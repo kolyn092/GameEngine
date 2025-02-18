@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClInclude Include="EngineDemo.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDemo.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EngineDemo.rc" />

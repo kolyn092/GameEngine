@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "EngineDemo.h"
+#include "GameLogic.h"
 
 #define MAX_LOADSTRING 100
 
@@ -26,6 +27,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
+    GameLogic* pGameLogic = new GameLogic();
+    pGameLogic->Initialize();
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -43,14 +46,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
+            if (msg.message == WM_QUIT) break;
+
             DispatchMessage(&msg);
         }
+        else
+        {
+            //update
+        }
     }
+
+    pGameLogic->Finalize();
 
     return (int) msg.wParam;
 }
