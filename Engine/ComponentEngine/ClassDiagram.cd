@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ComponentEngine::CESystem" Collapsed="true">
+    <Position X="44.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQSEAAgAAAAAAAAAAAAAAgAAAAAABwAQAACQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CESystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Collider" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAFRBAAAGgAAAAAAAAAIBYAgAABEAEcBACEMKQAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Collider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Object" Collapsed="true">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQFQBQAAyAAABAgAAAAIBAIgAAAAIAMQACEIIAACEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Object.h</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ComponentEngine::Component" Collapsed="true">
+    <Position X="19.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAIAAAAAAAABAAgAAAAgAAAAABAAIAAAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Skybox" Collapsed="true">
+    <Position X="29.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAhIAAAAAAAAAAAAAAABAAAAAAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CSkybox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CCamera" Collapsed="true">
+    <Position X="36.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEDRAoAAgIAAAoIACEAIFAQkCBAASA4BAAgEJAhAkI=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CCamera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CLight" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgBQAAAAwAAAIAAAAAEYBBAgAQAAIAIICgEAIgEAcQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CLight.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Transform" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VAQBQACgACGAADIAAEIAARQIsQRgIgAIIESFAgWgksI=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Transform.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::DXAudioEngine" Collapsed="true">
+    <Position X="44.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAhAEAAAAEAAAAACQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\DXAudioEngine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::AudioSource" Collapsed="true">
+    <Position X="20.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQlYABCQCAAByAAAIAAAhAQgIKAAICYqAgAAIAEAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\AudioSource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::AudioClip" Collapsed="true">
+    <Position X="41.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBQAAEACAAAgAAAKCAAAAAAAAoAAAAAAIAUAAAABIA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\AudioClip.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::AudioListener" Collapsed="true">
+    <Position X="32" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAwBQAAAAAAAAgAAAAAAABAAgAAAAAAIAAAAAIAAAMA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\AudioListener.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::MeshRenderer" Collapsed="true">
+    <Position X="38.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggRBwQBAOAAAACAOAACAAhgBgkAAAACMAgCAAYAIAEI=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\MeshRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Rigidbody" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIEJQUAwAYhAQCgAAABAABCFgAAGAAAYggAACAAAGEU=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Rigidbody.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::BoxCollider" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAIAACAAAAEAAAAAAgIQAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\BoxCollider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CapsuleCollider" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEEAAIAAAEAAAIAAIAAAIACAGAAACAAACAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CapsuleCollider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::SphereCollider" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAFIAAAAAIAAAAAAAEAAAAAAACAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\SphereCollider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::UI_Button" Collapsed="true">
+    <Position X="25.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQBQBIAAAQAgEAAAAAQIRAAgWEAASBIQAACAIAAAEg=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::UI_Image" Collapsed="true">
+    <Position X="34.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBRCAAACAAAAIABEiACNEAgQAEAUCIAAyAIIgACEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Image.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CFont" Collapsed="true">
+    <Position X="46.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiAAAAAAEAAAAAAAAACACAAAAAAAAAAEBgAAAAAAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CFont.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::UI_Text" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAgQIAAAAgAAhAAgABCAgAAAAAAIAAiAAIgAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Text.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::ProgressBar" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBwAIIAAAIMAAAAIAIAJAAiBBAAQAIAQgAQIAACEk=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\ProgressBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::InputField" Collapsed="true">
+    <Position X="18.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQhQIAAAAgCBgAIZAAggBBAhIAAABAYEACABIAAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\InputField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CTerrain" Collapsed="true">
+    <Position X="23" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBQAAAAAAAAAAAAAAAABQAgQAAAAAIAJAAAIAAAEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CTerrain.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Script" Collapsed="true">
+    <Position X="27.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAACAAAhAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Script.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CMaterial" Collapsed="true">
+    <Position X="41.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgABAAAQQAAAAACEADAAAAgAAQAIAAQAAAAAQAEAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CMaterial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::MaterialManager" Collapsed="true">
+    <Position X="44.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAACAQAAAAAAAAAAEAAAAAAIAQAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\MaterialManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Scene" Collapsed="true">
+    <Position X="44.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQxDQAAAAmiAACEggAACEkEkQEAAgAERABIAYBAACEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::GameObject" Collapsed="true">
+    <Position X="41.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MBSXQBQAAiAIAFFABAAIJBEogALQAIiMSADEYMICDEQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::CDebug" Collapsed="true">
+    <Position X="43" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgQAAAAAgABAABEAAAAAABAAAAgggAACgAAIgABCQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CDebug.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::PhysicMaterial" Collapsed="true">
+    <Position X="46.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAABgAEAAAACFAAAIAAAAACAADAgAAAAAABAAAAAIA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\PhysicMaterial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::SceneManager" Collapsed="true">
+    <Position X="46.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAIAgAMhAAAAACQAAAoAQgAAACQAAAAAQACQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::Ray" Collapsed="true">
+    <Position X="41.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAABAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Ray.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::RaycastHit" Collapsed="true">
+    <Position X="43" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAACAAAAAAAAAAAAAAQwAAEAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\RaycastHit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentEngine::FontManager" Collapsed="true">
+    <Position X="46.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAABAgAAAAQAAgBAAACQ=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\FontManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Input" Collapsed="true">
+    <Position X="43" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAJAAgABgAAQQCJCQQJcAgAgAAkAEABgBAQCDY=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentTimer" Collapsed="true">
+    <Position X="43" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBIAAAAAQCAAAAABIAAAAAAABAAAQBIAAAAgAAAAAAA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\CTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ComponentEngine::IComponentEventFunc" Collapsed="true">
+    <Position X="41.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQFQBQAAiAAABAAAAAAIBAIgAAAAIAMQACEIIAACEA=</HashCode>
+      <FileName>G:\0GA1stFinal\GA1stFinal_Dhampir\5_Project\Project_Dhampir_ver1\EX\Component\inc\IComponentEventFunc.h</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

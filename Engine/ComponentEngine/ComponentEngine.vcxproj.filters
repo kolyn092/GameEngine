@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\98_ETC">
+      <UniqueIdentifier>{d3b8b89f-6fe9-4c4a-aa28-9a21fec619b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99_PCH">
+      <UniqueIdentifier>{8b94a0fb-1656-4234-9862-6e935755edf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\0_Process">
+      <UniqueIdentifier>{5715a75d-66b7-4b7e-b5fc-d254d3b218b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\1_EventFunc">
+      <UniqueIdentifier>{0cf3e0f2-8fe7-436d-b3bd-95ab89d6ffac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\1_EventFunc\Object">
+      <UniqueIdentifier>{523152ee-f008-49e7-83cd-2b9b405de476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\1_EventFunc\Object\Component">
+      <UniqueIdentifier>{32c9afed-da2d-4f0f-a827-44e3fb0ca2d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components">
+      <UniqueIdentifier>{0b1433c0-9c85-41d8-922b-6729da698e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Camera">
+      <UniqueIdentifier>{e218417a-53f1-40c6-9b3f-6c6946a28b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Light">
+      <UniqueIdentifier>{c51e667c-ff45-4f4c-9c01-64737cc48ff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Transform">
+      <UniqueIdentifier>{794daaaa-b5d5-4c16-96b2-d9d89f6e2768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\4_Material">
+      <UniqueIdentifier>{070678d3-985b-4df4-998d-7b05d5c6e947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\3_GameObject">
+      <UniqueIdentifier>{61aac233-78d6-4123-b2a8-e1029350738f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\97_Debug">
+      <UniqueIdentifier>{fe389ca8-8e7a-4697-9a52-5d7947714c66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Audio">
+      <UniqueIdentifier>{487d533d-3931-486b-8fb4-9aee084d0699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Audio\AudioSource">
+      <UniqueIdentifier>{49876f41-b440-470a-bf0f-0c5507812765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Audio\AudioClip">
+      <UniqueIdentifier>{1284693d-00ed-43de-86f9-5cbf8e897393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Audio\AudioListener">
+      <UniqueIdentifier>{406f2b5e-a4a9-46a6-83d7-d6aec4d0c321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Mesh">
+      <UniqueIdentifier>{0c6fdb5b-28df-4f5c-8c75-e54735afb701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Mesh\MeshRenderer">
+      <UniqueIdentifier>{e021545c-ce59-4968-80f0-ca7c3826b107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Physics">
+      <UniqueIdentifier>{96714bef-a38e-4e58-8d9f-64480ca234c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Physics\Collider">
+      <UniqueIdentifier>{9c2c632a-c1b2-4688-bef2-8112b9d191de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Physics\Rigidbody">
+      <UniqueIdentifier>{f352d184-69ed-49b1-95b5-7353fd61acc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Physics\Primitive Collider">
+      <UniqueIdentifier>{1e0b6a68-0a70-4bc8-9191-bb94096149ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\5_Physic Material">
+      <UniqueIdentifier>{ff21cb62-09d3-4a26-a8a7-8f5fd9e68afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\6_SceneManager">
+      <UniqueIdentifier>{d0a6de13-8741-43d7-a530-1bacfea9d813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\7_Scene">
+      <UniqueIdentifier>{391a5d1d-f39c-4cbe-93ce-9bdceacebd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI">
+      <UniqueIdentifier>{30189920-710c-4765-b6b2-d507105d8770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI\Button">
+      <UniqueIdentifier>{e0bc0f59-7861-4e9d-9d99-4d50062068a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI\Image">
+      <UniqueIdentifier>{70129de9-ef8e-4f36-a4b4-d8b753100ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI\Text">
+      <UniqueIdentifier>{6d237bda-55d9-467d-8ecd-1ecd79f0d89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\96_Input">
+      <UniqueIdentifier>{be98b33d-a161-4994-82f3-1174596a0a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\8_Ray">
+      <UniqueIdentifier>{9a1a8e63-962d-46a5-8bc7-8f1ec3943a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\9_Raycast">
+      <UniqueIdentifier>{0b1b750d-3ff8-4fca-9099-c004018633dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI\ProgressBar">
+      <UniqueIdentifier>{f8059c1f-e2df-4958-9c1c-c98043876108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\UI\InputField">
+      <UniqueIdentifier>{78351cc1-4c5d-417d-971d-f9f973bcd912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Timer">
+      <UniqueIdentifier>{55bfeceb-9b34-4c09-b4a7-9bacf916e79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Terrain">
+      <UniqueIdentifier>{6f8425f9-a544-4488-bbc0-ff04cacf520d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\10_Font">
+      <UniqueIdentifier>{d3e0b23e-127b-42f5-8fff-63263c157901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2_Components\Script">
+      <UniqueIdentifier>{5a9373d1-6fdc-4c0d-a124-b65308673ac9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>소스 파일\98_ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>소스 파일\99_PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CMaterial.h">
+      <Filter>소스 파일\4_Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\MeshRenderer.h">
+      <Filter>소스 파일\2_Components\Mesh\MeshRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\GameObject.h">
+      <Filter>소스 파일\3_GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CLight.h">
+      <Filter>소스 파일\2_Components\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\AudioClip.h">
+      <Filter>소스 파일\2_Components\Audio\AudioClip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\AudioListener.h">
+      <Filter>소스 파일\2_Components\Audio\AudioListener</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\AudioSource.h">
+      <Filter>소스 파일\2_Components\Audio\AudioSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CCamera.h">
+      <Filter>소스 파일\2_Components\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Rigidbody.h">
+      <Filter>소스 파일\2_Components\Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Transform.h">
+      <Filter>소스 파일\2_Components\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Component.h">
+      <Filter>소스 파일\1_EventFunc\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Object.h">
+      <Filter>소스 파일\1_EventFunc\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\IComponentEventFunc.h">
+      <Filter>소스 파일\1_EventFunc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CESystem.h">
+      <Filter>소스 파일\0_Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CDebug.h">
+      <Filter>소스 파일\97_Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\SceneManager.h">
+      <Filter>소스 파일\6_SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Scene.h">
+      <Filter>소스 파일\7_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\PhysicMaterial.h">
+      <Filter>소스 파일\5_Physic Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Collider.h">
+      <Filter>소스 파일\2_Components\Physics\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\SphereCollider.h">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\BoxCollider.h">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CapsuleCollider.h">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\DXAudioEngine.h">
+      <Filter>소스 파일\2_Components\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Button.h">
+      <Filter>소스 파일\2_Components\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Image.h">
+      <Filter>소스 파일\2_Components\UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Text.h">
+      <Filter>소스 파일\2_Components\UI\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Input.h">
+      <Filter>소스 파일\96_Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Ray.h">
+      <Filter>소스 파일\8_Ray</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\RaycastHit.h">
+      <Filter>소스 파일\9_Raycast</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\ProgressBar.h">
+      <Filter>소스 파일\2_Components\UI\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\InputField.h">
+      <Filter>소스 파일\2_Components\UI\InputField</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CSkybox.h">
+      <Filter>소스 파일\2_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CUtil.h">
+      <Filter>소스 파일\98_ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CTimer.h">
+      <Filter>소스 파일\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CTerrain.h">
+      <Filter>소스 파일\2_Components\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\MaterialManager.h">
+      <Filter>소스 파일\4_Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\CFont.h">
+      <Filter>소스 파일\10_Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\FontManager.h">
+      <Filter>소스 파일\10_Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\Script.h">
+      <Filter>소스 파일\2_Components\Script</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Component.cpp">
+      <Filter>소스 파일\1_EventFunc\Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>소스 파일\3_GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\1_EventFunc\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CMaterial.cpp">
+      <Filter>소스 파일\4_Material</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일\99_PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioListener.cpp">
+      <Filter>소스 파일\2_Components\Audio\AudioListener</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>소스 파일\2_Components\Audio\AudioSource</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
+      <Filter>소스 파일\2_Components\Audio\AudioClip</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>소스 파일\2_Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CLight.cpp">
+      <Filter>소스 파일\2_Components\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>소스 파일\2_Components\Mesh\MeshRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>소스 파일\2_Components\Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\2_Components\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="CESystem.cpp">
+      <Filter>소스 파일\0_Process</Filter>
+    </ClCompile>
+    <ClCompile Include="CDebug.cpp">
+      <Filter>소스 파일\97_Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\6_SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\7_Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicMaterial.cpp">
+      <Filter>소스 파일\5_Physic Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>소스 파일\2_Components\Physics\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CapsuleCollider.cpp">
+      <Filter>소스 파일\2_Components\Physics\Primitive Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="DXAudioEngine.cpp">
+      <Filter>소스 파일\2_Components\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>소스 파일\2_Components\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>소스 파일\2_Components\UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>소스 파일\2_Components\UI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일\96_Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>소스 파일\8_Ray</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>소스 파일\2_Components\UI\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="InputField.cpp">
+      <Filter>소스 파일\2_Components\UI\InputField</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkybox.cpp">
+      <Filter>소스 파일\2_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimer.cpp">
+      <Filter>소스 파일\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerrain.cpp">
+      <Filter>소스 파일\2_Components\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialManager.cpp">
+      <Filter>소스 파일\4_Material</Filter>
+    </ClCompile>
+    <ClCompile Include="CFont.cpp">
+      <Filter>소스 파일\10_Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>소스 파일\10_Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>소스 파일\2_Components\Script</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="텍스트.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{9253dd48-385e-472e-9208-0050ca334704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\framework">
+      <UniqueIdentifier>{2452041a-c368-46f6-b027-137f606f6d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\scene setting">
+      <UniqueIdentifier>{b46e5d95-5e1b-4886-9701-2409c56d4dc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\player">
+      <UniqueIdentifier>{e336dfcd-b6de-4dcc-afeb-61049528a423}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSetting.cpp">
+      <Filter>소스 파일\scene setting</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>소스 파일\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>소스 파일\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneSetting.h">
+      <Filter>소스 파일\scene setting</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>리소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>소스 파일\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resource\Icon.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TestClient.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

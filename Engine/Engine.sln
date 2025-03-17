@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3DGraphicsEngine", "3DGraphicsEngine\3DGraphicsEngine.vcxproj", "{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComponentEngine", "ComponentEngine\ComponentEngine.vcxproj", "{84E87B4F-C489-4867-87A7-35874D63E6F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5F86A60A-E514-45E1-83B0-9DC0430F0CD8} = {5F86A60A-E514-45E1-83B0-9DC0430F0CD8}
+		{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69} = {9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysXLib", "PhysXLib\PhysXLib.vcxproj", "{5F86A60A-E514-45E1-83B0-9DC0430F0CD8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClient", "TestClient\TestClient.vcxproj", "{903ACA3A-2E99-486A-9451-54644A04A193}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84E87B4F-C489-4867-87A7-35874D63E6F3} = {84E87B4F-C489-4867-87A7-35874D63E6F3}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}.Debug|x86.ActiveCfg = Debug|Win32
+		{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}.Debug|x86.Build.0 = Debug|Win32
+		{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}.Release|x86.ActiveCfg = Release|Win32
+		{9CED9EBC-4B38-4E7C-9C87-B29DF32B0D69}.Release|x86.Build.0 = Release|Win32
+		{84E87B4F-C489-4867-87A7-35874D63E6F3}.Debug|x86.ActiveCfg = Debug|Win32
+		{84E87B4F-C489-4867-87A7-35874D63E6F3}.Debug|x86.Build.0 = Debug|Win32
+		{84E87B4F-C489-4867-87A7-35874D63E6F3}.Release|x86.ActiveCfg = Release|Win32
+		{84E87B4F-C489-4867-87A7-35874D63E6F3}.Release|x86.Build.0 = Release|Win32
+		{5F86A60A-E514-45E1-83B0-9DC0430F0CD8}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F86A60A-E514-45E1-83B0-9DC0430F0CD8}.Debug|x86.Build.0 = Debug|Win32
+		{5F86A60A-E514-45E1-83B0-9DC0430F0CD8}.Release|x86.ActiveCfg = Release|Win32
+		{5F86A60A-E514-45E1-83B0-9DC0430F0CD8}.Release|x86.Build.0 = Release|Win32
+		{903ACA3A-2E99-486A-9451-54644A04A193}.Debug|x86.ActiveCfg = Debug|Win32
+		{903ACA3A-2E99-486A-9451-54644A04A193}.Debug|x86.Build.0 = Debug|Win32
+		{903ACA3A-2E99-486A-9451-54644A04A193}.Release|x86.ActiveCfg = Release|Win32
+		{903ACA3A-2E99-486A-9451-54644A04A193}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DC64981-75C0-4B7D-9529-7E78CF09D5E3}
+	EndGlobalSection
+EndGlobal
