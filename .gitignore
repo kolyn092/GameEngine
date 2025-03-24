@@ -443,3 +443,7 @@ Shader/
 
 # resource
 Resource/
+
+# imgui
+imgui-master.zip
+imgui-master/
