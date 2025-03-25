@@ -19,6 +19,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClient", "TestClient\Te
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineTool", "EngineTool\EngineTool.vcxproj", "{5148D021-EB7E-489C-A107-89B6218ACF05}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84E87B4F-C489-4867-87A7-35874D63E6F3} = {84E87B4F-C489-4867-87A7-35874D63E6F3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

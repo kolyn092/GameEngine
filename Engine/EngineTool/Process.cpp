@@ -2,6 +2,8 @@
 #include <tchar.h>
 #include "Process.h"
 #include "Input.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 
 using namespace DirectX;
 
@@ -18,6 +20,11 @@ Process::~Process()
 		m_ComponentEngine->Finalize();
 		m_ComponentEngine = nullptr;
 	}
+
+	//imgui 삭제
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 HRESULT Process::Window_Initalize(HINSTANCE hInstance)
@@ -73,6 +80,24 @@ HRESULT Process::Window_Initalize(HINSTANCE hInstance)
 	::ShowWindow(m_hWnd, SW_SHOWNORMAL);
 	::UpdateWindow(m_hWnd);
 
+	// Component 엔진 초기화
+	m_ComponentEngine = ComponentEngine::CESystem::Ins();
+	m_ComponentEngine->Initalize(m_hWnd);
+
+	Input::Ins()->Initalize(m_hWnd);
+
+	//imgui 초기화
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	// Setup Platform/Renderer backends
+	ImGui_ImplWin32_Init(m_hWnd);
+	ImGui_ImplDX11_Init(m_ComponentEngine->GetDevice(), m_ComponentEngine->GetDeviceContext());
+
 	// 클라이언트 영역 크기 재조정
 	ResizeWindow(m_hWnd, _width, _height);
 
@@ -81,13 +106,12 @@ HRESULT Process::Window_Initalize(HINSTANCE hInstance)
 
 void Process::Initalize()
 {
-	m_ComponentEngine = ComponentEngine::CESystem::Ins();
-	m_ComponentEngine->Initalize(m_hWnd);
-
-	Input::Ins()->Initalize(m_hWnd);
-
 	m_ComponentEngine->Start();
 }
+
+bool show_demo_window = true;
+bool show_another_window = false;
+ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 void Process::Loop()
 {
@@ -105,8 +129,50 @@ void Process::Loop()
 		}
 		else
 		{
-			Update();
-			Render();
+			ImGui_ImplDX11_NewFrame();
+			ImGui_ImplWin32_NewFrame();
+			ImGui::NewFrame();
+
+			if (show_demo_window)
+				ImGui::ShowDemoWindow(&show_demo_window);
+
+			{
+				static float f = 0.0f;
+				static int counter = 0;
+
+				ImGui::Begin("Hello World!");
+
+				ImGui::Text("This is some useful text.");
+				ImGui::Checkbox("Demo Window", &show_demo_window);
+				ImGui::Checkbox("Another Window", &show_another_window);
+
+				ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+				ImGui::ColorEdit3("clear color", (float*)&clear_color);
+
+				if (ImGui::Button("Button"))
+					counter++;
+				ImGui::SameLine();
+				ImGui::Text("counter : % d", counter);
+
+				ImGui::End();
+			}
+
+			if (show_another_window)
+			{
+				ImGui::Begin("Another Window", &show_another_window);
+				ImGui::Text("Hello from another window!");
+				if (ImGui::Button("Close Me"))
+					show_another_window = false;
+				ImGui::End();
+			}
+
+			ImGui::Render();
+			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+			
+			//Update();
+			//Render();
+			GRAPHICENGINE::EndRender();
 		}
 	}
 }
@@ -121,16 +187,30 @@ void Process::Render()
 	m_ComponentEngine->Draw();
 }
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 LRESULT CALLBACK Process::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	HDC			hdc;
 	PAINTSTRUCT ps;
+
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+		return true;
 
 	switch (message)
 	{
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		EndPaint(hWnd, &ps);
+		break;
+	case WM_DPICHANGED:
+		if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports) // 도킹 깃허브 받은거 확인
+		{
+			//const int dpi = HIWORD(wParam);
+			const RECT* suggested_rect = (RECT*)lParam;
+			::SetWindowPos(hWnd, NULL, suggested_rect->left, suggested_rect->top,
+				suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+		}
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);

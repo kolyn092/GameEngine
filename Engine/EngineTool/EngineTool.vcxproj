@@ -44,11 +44,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\EX\Component\inc;..\EX\Engine\inc;..\EX\FBX\include;..\EX\DXTK\Inc;..\EX\DXTex\Inc;..\EX\PhysX\physx\include;..\EX\PhysX\pxshared\include;..\EX\PhysX\inc;..\EX\FlatBuffer\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\EX\IMGUI;..\EX\Component\inc;..\EX\Engine\inc;..\EX\FBX\include;..\EX\DXTK\Inc;..\EX\DXTex\Inc;..\EX\PhysX\physx\include;..\EX\PhysX\pxshared\include;..\EX\PhysX\inc;..\EX\FlatBuffer\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\EX\Component\lib\Debug;..\EX\FBX\lib\debug;..\EX\DXTK\Lib;..\EX\DXTex\Lib;..\EX\Engine\Lib\Debug;..\EX\PhysX\lib;..\EX\PhysX\lib\debug;..\EX\FlatBuffer\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\EX\Component\inc;..\EX\Engine\inc;..\EX\FBX\include;..\EX\DXTK\Inc;..\EX\DXTex\Inc;..\EX\PhysX\physx\include;..\EX\PhysX\pxshared\include;..\EX\PhysX\inc;..\EX\FlatBuffer\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\EX\IMGUI;..\EX\Component\inc;..\EX\Engine\inc;..\EX\FBX\include;..\EX\DXTK\Inc;..\EX\DXTex\Inc;..\EX\PhysX\physx\include;..\EX\PhysX\pxshared\include;..\EX\PhysX\inc;..\EX\FlatBuffer\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\EX\Component\lib\Debug;..\EX\FBX\lib\debug;..\EX\DXTK\Lib;..\EX\DXTex\Lib;..\EX\Engine\Lib\Debug;..\EX\PhysX\lib;..\EX\PhysX\lib\debug;..\EX\FlatBuffer\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -82,14 +82,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="EngineTool.h" />
+    <ClInclude Include="..\EX\IMGUI\imconfig.h" />
+    <ClInclude Include="..\EX\IMGUI\imgui.h" />
+    <ClInclude Include="..\EX\IMGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="..\EX\IMGUI\imgui_impl_win32.h" />
+    <ClInclude Include="..\EX\IMGUI\imgui_internal.h" />
+    <ClInclude Include="..\EX\IMGUI\imstb_rectpack.h" />
+    <ClInclude Include="..\EX\IMGUI\imstb_textedit.h" />
+    <ClInclude Include="..\EX\IMGUI\imstb_truetype.h" />
+    <ClInclude Include="imguiManager.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineTool.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_demo.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_draw.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_tables.cpp" />
+    <ClCompile Include="..\EX\IMGUI\imgui_widgets.cpp" />
+    <ClCompile Include="imguiManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Process.cpp" />
   </ItemGroup>
   <ItemGroup>

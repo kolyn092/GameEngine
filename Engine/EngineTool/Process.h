@@ -11,8 +11,8 @@ private:
 	HWND m_hWnd;
 	MSG m_Msg;
 
-	const int m_ScreenWidth = 1920;
-	const int m_ScreenHeight = 1080;
+	const int m_ScreenWidth = 1600;
+	const int m_ScreenHeight = 900;
 
 public:
 	Process();
