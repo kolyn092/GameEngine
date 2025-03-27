@@ -33,7 +33,7 @@
     <ClInclude Include="main.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="imguiManager.h">
+    <ClInclude Include="ImguiManager.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\EX\IMGUI\imconfig.h">
@@ -68,7 +68,7 @@
     <ClCompile Include="Process.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="imguiManager.cpp">
+    <ClCompile Include="ImguiManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\EX\IMGUI\imgui.cpp">
