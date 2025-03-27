@@ -49,12 +49,18 @@ void ComponentEngine::CESystem::Update()
 	m_SceneManager->UpdateScene(m_dTime);
 }
 
-void ComponentEngine::CESystem::Draw()
+void ComponentEngine::CESystem::BeginDraw()
 {
 	GRAPHICENGINE::BeginRender(Vector4(0.6f, 0.6f, 0.6f, 1.0f));
+}
 
+void ComponentEngine::CESystem::Draw()
+{
 	m_SceneManager->DrawScene();
+}
 
+void ComponentEngine::CESystem::EndDraw()
+{
 	GRAPHICENGINE::EndRender();
 
 	m_Timer->End();

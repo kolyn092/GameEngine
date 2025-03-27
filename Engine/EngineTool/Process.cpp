@@ -133,6 +133,8 @@ void Process::Loop()
 			ImGui_ImplWin32_NewFrame();
 			ImGui::NewFrame();
 
+			m_ComponentEngine->Update();
+
 			if (show_demo_window)
 				ImGui::ShowDemoWindow(&show_demo_window);
 
@@ -166,25 +168,16 @@ void Process::Loop()
 				ImGui::End();
 			}
 
+			//Draw
+			m_ComponentEngine->BeginDraw();
+			m_ComponentEngine->Draw();
+
 			ImGui::Render();
 			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-			
-			//Update();
-			//Render();
-			GRAPHICENGINE::EndRender();
+			m_ComponentEngine->EndDraw();
 		}
 	}
-}
-
-void Process::Update()
-{
-	m_ComponentEngine->Update();
-}
-
-void Process::Render()
-{
-	m_ComponentEngine->Draw();
 }
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
