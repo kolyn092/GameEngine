@@ -132,6 +132,7 @@ void ComponentEngine::Scene::AddGameObject(GameObject* obj, GameObject* parent)
 	if (parent)
 	{
 		parent->GetComponent<Transform>()->AttatchChild(obj->GetComponent<Transform>());
+		parent->SetChildObject(obj);
 	}
 	else
 	{

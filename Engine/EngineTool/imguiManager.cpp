@@ -88,13 +88,13 @@ void ImguiManager::Update()
 	/// //////////////////////////////////////////////////////////////////////////
 	
 	ImGui::Begin("Hierarchy");
-	auto gameObjects = m_DefaultScene->GetObjects();
+	auto gameObjects = m_DefaultScene->GetRootObjects();
 	for (auto obj : gameObjects)
 	{
 		auto objActiveState = obj->isActive();
-		if (ImGui::CollapsingHeader(obj->GetName().c_str()))
+		if (ImGui::Button(obj->GetName().c_str(), ImVec2(100,0)))
 		{
-			// 자식 오브젝트 등록
+			// 자식 오브젝트 표시
 		}
 		//mGui::Begin(obj->GetName().c_str());
 		//auto components = obj->GetAllComponents();
@@ -104,6 +104,8 @@ void ImguiManager::Update()
 		//	//ImGui::Checkbox("Active", &show_demo_window);
 		//}
 		//ImGui::End();
+
+		/// Detach 관련해서 Root 오브젝트와 Child 오브젝트 추가/삭제 수정
 	}
 	ImGui::End();
 }

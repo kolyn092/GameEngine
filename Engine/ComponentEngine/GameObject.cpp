@@ -558,6 +558,14 @@ void ComponentEngine::GameObject::SetActiveRecursively(bool state)
 	}
 }
 
+void ComponentEngine::GameObject::SetChildObject(GameObject* obj)
+{
+	if (obj)
+	{
+		m_ChildObjects.push_back(obj);
+	}
+}
+
 void ComponentEngine::GameObject::AttatchShape(physx::PxShape* shape)
 {
 	m_PhysicsActor->attachShape(*shape);
