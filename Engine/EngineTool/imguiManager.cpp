@@ -8,20 +8,22 @@
 #include "CTerrain.h"
 #include "CLight.h"
 #include "CFont.h"
+#include <imgui.h>
 
 ImguiManager* ImguiManager::m_pInstance = nullptr;
 
 ImguiManager::ImguiManager()
+	: m_DefaultScene(nullptr)
 {
 
 }
 
 ImguiManager::~ImguiManager()
 {
-	if (m_defaultScene)
+	if (m_DefaultScene)
 	{
-		delete m_defaultScene;
-		m_defaultScene = nullptr;
+		delete m_DefaultScene;
+		m_DefaultScene = nullptr;
 	}
 }
 
@@ -30,15 +32,15 @@ void ImguiManager::Initalize()
 	/// //////////////////////////////////////////////////////////////////////////
 	/// 컴포넌트 엔진 설정 (기본 Scene 세팅)
 	/// //////////////////////////////////////////////////////////////////////////
-	
+
 	/// [ Default Font Setting ]
 	ComponentEngine::CFont* _defaultFont = new ComponentEngine::CFont("DefaultFont");
 	_defaultFont->m_FilePath = "../EX/Font/RoundedTypeface.sfont";
 	_defaultFont->CreateFont();
 
 	/// [ Create Default Scene ]
-	m_defaultScene = new ComponentEngine::Scene();
-	m_defaultScene->SetInputMouseLock(false);
+	m_DefaultScene = new ComponentEngine::Scene();
+	m_DefaultScene->SetInputMouseLock(false);
 
 	/// [ Default Light Setting ] 
 	ComponentEngine::GameObject* _lightObj = new ComponentEngine::GameObject("light");
@@ -50,7 +52,7 @@ void ImguiManager::Initalize()
 	_light->SetFogActive(false);
 	_lightObj->AddComponent<ComponentEngine::CLight*>(_light);
 	// Scene에 해당 오브젝트 등록
-	m_defaultScene->AddGameObject(_lightObj);
+	m_DefaultScene->AddGameObject(_lightObj);
 
 	/// [ Default Skybox Object Setting ]
 	ComponentEngine::GameObject* _skyboxObj = new ComponentEngine::GameObject("skybox");
@@ -59,7 +61,7 @@ void ImguiManager::Initalize()
 	_skybox->m_FilePath = "..\\Resource\\Skybox\\SkyBox3_1.dds";
 	_skyboxObj->AddComponent<ComponentEngine::Skybox*>(_skybox);
 	// Scene에 해당 오브젝트 등록
-	m_defaultScene->AddGameObject(_skyboxObj);
+	m_DefaultScene->AddGameObject(_skyboxObj);
 
 	/// [ Default Camera Object Setting ]
 	ComponentEngine::GameObject* _cameraObj = new ComponentEngine::GameObject("camera");
@@ -71,18 +73,39 @@ void ImguiManager::Initalize()
 	_camera->SetCameraMode(ComponentEngine::CCamera::eMode::FOLLOW);
 	_cameraObj->AddComponent<ComponentEngine::CCamera*>(_camera);
 	// Scene에 해당 오브젝트 등록
-	m_defaultScene->AddGameObject(_cameraObj);
+	m_DefaultScene->AddGameObject(_cameraObj);
 	// Scene의 메인 카메라로 등록
-	m_defaultScene->SetMainCamera(_camera);
+	m_DefaultScene->SetMainCamera(_camera);
 
 	/// [ Add Default Scene ]
-	ComponentEngine::SceneManager::Ins()->AddScene(m_defaultScene);
+	ComponentEngine::SceneManager::Ins()->AddScene(m_DefaultScene);
+}
 
+void ImguiManager::Update()
+{
 	/// //////////////////////////////////////////////////////////////////////////
 	/// ImGUI Setting
 	/// //////////////////////////////////////////////////////////////////////////
 	
-
+	ImGui::Begin("Hierarchy");
+	auto gameObjects = m_DefaultScene->GetObjects();
+	for (auto obj : gameObjects)
+	{
+		auto objActiveState = obj->isActive();
+		if (ImGui::CollapsingHeader(obj->GetName().c_str()))
+		{
+			// 자식 오브젝트 등록
+		}
+		//mGui::Begin(obj->GetName().c_str());
+		//auto components = obj->GetAllComponents();
+		//for (auto com : components)
+		//{
+		//	ImGui::Text(com->GetComponentName().c_str());
+		//	//ImGui::Checkbox("Active", &show_demo_window);
+		//}
+		//ImGui::End();
+	}
+	ImGui::End();
 }
 
 void ImguiManager::Finalize()

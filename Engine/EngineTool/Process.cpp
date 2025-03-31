@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
+#include "ImguiManager.h"
 
 using namespace DirectX;
 
@@ -107,11 +108,14 @@ HRESULT Process::Window_Initalize(HINSTANCE hInstance)
 void Process::Initalize()
 {
 	m_ComponentEngine->Start();
+	ImguiManager::Ins()->Initalize();
 }
 
 bool show_demo_window = true;
 bool show_another_window = false;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+bool isGUIInit = true;
 
 void Process::Loop()
 {
@@ -135,6 +139,7 @@ void Process::Loop()
 
 			m_ComponentEngine->Update();
 
+			///*
 			if (show_demo_window)
 				ImGui::ShowDemoWindow(&show_demo_window);
 
@@ -167,6 +172,9 @@ void Process::Loop()
 					show_another_window = false;
 				ImGui::End();
 			}
+			//*/
+
+			ImguiManager::Ins()->Update();
 
 			//Draw
 			m_ComponentEngine->BeginDraw();

@@ -1,9 +1,10 @@
 #pragma once
+#include "Scene.h"
 
 class ImguiManager
 {
 private:
-	ComponentEngine::Scene* m_defaultScene;
+	ComponentEngine::Scene* m_DefaultScene;
 
 #pragma region SINGLETON
 private:
@@ -26,6 +27,7 @@ private:
 
 public:
 	void Initalize();
+	void Update();
 	void Finalize();
 
 };
