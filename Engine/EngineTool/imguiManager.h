@@ -5,6 +5,7 @@ class ImguiManager
 {
 private:
 	ComponentEngine::Scene* m_DefaultScene;
+	ComponentEngine::GameObject* m_SelectedObject;
 
 #pragma region SINGLETON
 private:
@@ -30,5 +31,8 @@ public:
 	void Update();
 	void Finalize();
 
+private:
+	void ShowGameObjectHierarchy(ComponentEngine::GameObject* obj);
+	void ShowObjectDetails();
 };
 

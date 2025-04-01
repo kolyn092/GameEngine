@@ -139,46 +139,14 @@ void Process::Loop()
 
 			m_ComponentEngine->Update();
 
-			///*
-			if (show_demo_window)
-				ImGui::ShowDemoWindow(&show_demo_window);
-
-			{
-				static float f = 0.0f;
-				static int counter = 0;
-
-				ImGui::Begin("Hello World!");
-
-				ImGui::Text("This is some useful text.");
-				ImGui::Checkbox("Demo Window", &show_demo_window);
-				ImGui::Checkbox("Another Window", &show_another_window);
-
-				ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-				ImGui::ColorEdit3("clear color", (float*)&clear_color);
-
-				if (ImGui::Button("Button"))
-					counter++;
-				ImGui::SameLine();
-				ImGui::Text("counter : % d", counter);
-
-				ImGui::End();
-			}
-
-			if (show_another_window)
-			{
-				ImGui::Begin("Another Window", &show_another_window);
-				ImGui::Text("Hello from another window!");
-				if (ImGui::Button("Close Me"))
-					show_another_window = false;
-				ImGui::End();
-			}
-			//*/
-
-			ImguiManager::Ins()->Update();
-
 			//Draw
 			m_ComponentEngine->BeginDraw();
 			m_ComponentEngine->Draw();
+
+			//ImGui::ShowDemoWindow();
+
+			//ImGUI Update
+			ImguiManager::Ins()->Update();
 
 			ImGui::Render();
 			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

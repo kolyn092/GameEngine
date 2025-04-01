@@ -13,7 +13,7 @@
 ImguiManager* ImguiManager::m_pInstance = nullptr;
 
 ImguiManager::ImguiManager()
-	: m_DefaultScene(nullptr)
+	: m_DefaultScene(nullptr), m_SelectedObject(nullptr)
 {
 
 }
@@ -86,26 +86,15 @@ void ImguiManager::Update()
 	/// //////////////////////////////////////////////////////////////////////////
 	/// ImGUI Setting
 	/// //////////////////////////////////////////////////////////////////////////
-	
+	/// 
 	ImGui::Begin("Hierarchy");
-	auto gameObjects = m_DefaultScene->GetObjects();
-	for (auto obj : gameObjects)
+	auto rootGameObjects = m_DefaultScene->GetRootObjects();
+	for (auto obj : rootGameObjects)
 	{
-		auto objActiveState = obj->isActive();
-		if (ImGui::CollapsingHeader(obj->GetName().c_str()))
-		{
-			// 자식 오브젝트 등록
-		}
-		//mGui::Begin(obj->GetName().c_str());
-		//auto components = obj->GetAllComponents();
-		//for (auto com : components)
-		//{
-		//	ImGui::Text(com->GetComponentName().c_str());
-		//	//ImGui::Checkbox("Active", &show_demo_window);
-		//}
-		//ImGui::End();
+		ShowGameObjectHierarchy(obj);
 	}
 	ImGui::End();
+	ShowObjectDetails();
 }
 
 void ImguiManager::Finalize()
@@ -114,5 +103,120 @@ void ImguiManager::Finalize()
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
+	}
+}
+
+void ImguiManager::ShowGameObjectHierarchy(ComponentEngine::GameObject* obj)
+{
+	// 트리 노드 생성
+	bool nodeOpen = ImGui::TreeNodeEx(obj->GetName().c_str(),
+		(m_SelectedObject == obj) ? ImGuiTreeNodeFlags_Selected : 0);
+
+	// 선택 상태 업데이트
+	if (ImGui::IsItemClicked())
+	{
+		m_SelectedObject = obj;
+	}
+
+	// 우클릭 컨텍스트 메뉴 추가
+	if (ImGui::BeginPopupContextItem())
+	{
+		if (ImGui::MenuItem("Rename"))
+		{
+			printf("Rename %s\n", obj->GetName().c_str());
+		}
+
+		if (ImGui::MenuItem("Delete"))
+		{
+			printf("Delete %s\n", obj->GetName().c_str());
+		}
+
+		ImGui::EndPopup();
+	}
+
+	// 드래그 드롭 추가
+	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
+	{
+		ImGui::SetDragDropPayload("DND_NODE", obj->GetName().c_str(), obj->GetName().size() + 1);
+		ImGui::Text("Dragging: %s", obj->GetName().c_str());
+		ImGui::EndDragDropSource();
+	}
+
+	if (ImGui::BeginDragDropTarget())
+	{
+		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_NODE"))
+		{
+			const char* droppedName = (const char*)payload->Data;
+			printf("Dropped %s onto %s\n", droppedName, obj->GetName().c_str());
+		}
+		ImGui::EndDragDropTarget();
+	}
+
+	// 자식 노드 표시
+	if (nodeOpen)
+	{
+		auto trans = obj->GetComponent<ComponentEngine::Transform>();
+		for (int i = 0; i < trans->GetChildCount(); i++)
+		{
+			auto childObject = trans->GetChild(i)->m_GameObject;
+			ShowGameObjectHierarchy(childObject);
+		}
+		ImGui::TreePop();
+	}
+}
+
+void ImguiManager::ShowObjectDetails()
+{
+	if (m_SelectedObject != nullptr)  // 오브젝트가 선택된 경우에만 창을 띄움
+	{
+		ImGui::Begin("Inspector", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+
+		bool gameObjectActive = true;
+		ImGui::Checkbox("##objectActive", &gameObjectActive);
+		m_SelectedObject->SetActive(gameObjectActive);
+		ImGui::SameLine();
+
+		std::string strName = m_SelectedObject->GetName();
+		std::vector<char> nameBuffer(strName.begin(), strName.end());
+		nameBuffer.push_back('\0');
+
+		if (ImGui::InputText("##name", nameBuffer.data(), nameBuffer.size()))
+		{
+			m_SelectedObject->SetName(std::string(nameBuffer.data()));
+		}
+
+		ImGui::Separator(); // 구분선 추가
+
+		if (ImGui::CollapsingHeader("Transform"))
+		{
+			auto trans = m_SelectedObject->m_Transform;
+			float pos3f[3] = {trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z};
+			float rot3f[3] = { trans->GetRotation().x, trans->GetRotation().y, trans->GetRotation().z };
+			float scl3f[3] = { trans->GetScale().x, trans->GetScale().y, trans->GetScale().z };
+			if (trans->GetParent() == nullptr)
+			{
+				ImGui::Text("Position");
+				ImGui::DragFloat3("##position", pos3f, 0.1f);
+
+				ImGui::Text("Rotation");
+				ImGui::DragFloat3("##rotation", rot3f, 0.1f);
+
+				ImGui::Text("Scale");
+				ImGui::DragFloat3("##scale", scl3f, 0.1f, 0.01f, 1000.0f);
+
+				trans->SetPosition(DirectX::SimpleMath::Vector3(pos3f[0], pos3f[1], pos3f[2]));
+				trans->SetRotate(DirectX::SimpleMath::Vector3(rot3f[0], rot3f[1], rot3f[2]));
+				trans->SetScale(DirectX::SimpleMath::Vector3(scl3f[0], scl3f[1], scl3f[2]));
+			}
+		}
+
+		ImGui::Separator(); // 구분선 추가
+
+		if (ImGui::Button("Close"))  // 닫기 버튼 추가
+		{
+			m_SelectedObject = nullptr;  // 창 닫기
+		}
+
+		ImGui::End();
 	}
 }
