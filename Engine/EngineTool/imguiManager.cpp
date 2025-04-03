@@ -187,7 +187,7 @@ void ImguiManager::ShowObjectDetails()
 
 		ImGui::Separator(); // 구분선 추가
 
-		if (ImGui::CollapsingHeader("Transform"))
+		ImGui::CollapsingHeader("Transform");
 		{
 			auto trans = m_SelectedObject->m_Transform;
 			float pos3f[3] = {trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z};
@@ -208,6 +208,32 @@ void ImguiManager::ShowObjectDetails()
 				trans->SetRotate(DirectX::SimpleMath::Vector3(rot3f[0], rot3f[1], rot3f[2]));
 				trans->SetScale(DirectX::SimpleMath::Vector3(scl3f[0], scl3f[1], scl3f[2]));
 			}
+		}
+
+		ImGui::CollapsingHeader("MeshRenderer");
+		{
+			auto meshComponent = m_SelectedObject->m_MeshRenderer;
+			ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
+			if(meshComponent->m_ModelPathList.size() > 0);
+			for (int i = 0; i < meshComponent->m_ModelPathList.size(); i++)
+			{
+				ImGui::Text("Multi Path : ", meshComponent->m_ModelPathList[i]);
+			}
+		}
+
+		ImGui::CollapsingHeader("Light");
+		{
+
+		}
+
+		ImGui::CollapsingHeader("Camera");
+		{
+
+		}
+
+		ImGui::CollapsingHeader("Audio");
+		{
+
 		}
 
 		ImGui::Separator(); // 구분선 추가
