@@ -34,5 +34,14 @@ public:
 private:
 	void ShowGameObjectHierarchy(ComponentEngine::GameObject* obj);
 	void ShowObjectDetails();
+	void Update_AudioListener_Component();
+	void Update_AudioSource_Component();
+	void Update_Camera_Component();
+	void Update_Light_Component();
+	void Update_MeshRenderer_Component();
+	void Update_BoxCollider_Component();
+	void Update_CapsuleCollider_Component();
+	void Update_SphereCollider_Component();
+	void Update_Rigidbody_Component();
 };
 

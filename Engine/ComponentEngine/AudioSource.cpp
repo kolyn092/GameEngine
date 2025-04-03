@@ -113,16 +113,6 @@ void ComponentEngine::AudioSource::SetMute(bool isMute)
 	}
 }
 
-void ComponentEngine::AudioSource::SetPlayOnAwake(bool value)
-{
-	m_isPlayOnAwake = value;
-}
-
-void ComponentEngine::AudioSource::SetLoop(bool isLoop)
-{
-	m_isLoop = isLoop;
-}
-
 void ComponentEngine::AudioSource::SetVolume(float value)
 {
 	if (m_AudioSource)

@@ -4,6 +4,8 @@
 #include "CCamera.h"
 #include "MeshRenderer.h"
 #include "Transform.h"
+#include "AudioListener.h"
+#include "AudioSource.h"
 #include "CSkybox.h"
 #include "CTerrain.h"
 #include "CLight.h"
@@ -171,7 +173,7 @@ void ImguiManager::ShowObjectDetails()
 	{
 		ImGui::Begin("Inspector", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-		bool gameObjectActive = true;
+		bool gameObjectActive = m_SelectedObject->isActive();
 		ImGui::Checkbox("##objectActive", &gameObjectActive);
 		m_SelectedObject->SetActive(gameObjectActive);
 		ImGui::SameLine();
@@ -210,33 +212,9 @@ void ImguiManager::ShowObjectDetails()
 			}
 		}
 
-		ImGui::CollapsingHeader("MeshRenderer");
-		{
-			auto meshComponent = m_SelectedObject->m_MeshRenderer;
-			ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
-			if(meshComponent->m_ModelPathList.size() > 0);
-			for (int i = 0; i < meshComponent->m_ModelPathList.size(); i++)
-			{
-				ImGui::Text("Multi Path : ", meshComponent->m_ModelPathList[i]);
-			}
-		}
-
-		ImGui::CollapsingHeader("Light");
-		{
-
-		}
-
-		ImGui::CollapsingHeader("Camera");
-		{
-
-		}
-
-		ImGui::CollapsingHeader("Audio");
-		{
-
-		}
-
 		ImGui::Separator(); // 구분선 추가
+
+
 
 		if (ImGui::Button("Close"))  // 닫기 버튼 추가
 		{
@@ -245,4 +223,157 @@ void ImguiManager::ShowObjectDetails()
 
 		ImGui::End();
 	}
+}
+
+void ImguiManager::Update_AudioListener_Component()
+{
+	auto audioListener = m_SelectedObject->GetComponent<ComponentEngine::AudioListener>();
+	bool componentActive = audioListener->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	audioListener->SetActive(componentActive);
+	ImGui::SameLine();
+
+	ImGui::CollapsingHeader("AudioListener");
+	{
+
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_AudioSource_Component()
+{
+	auto audioSource = m_SelectedObject->GetComponent<ComponentEngine::AudioSource>();
+	bool componentActive = audioSource->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	audioSource->SetActive(componentActive);
+	ImGui::SameLine();
+
+	ImGui::CollapsingHeader("AudioSource");
+	{
+		auto audioClip = audioSource->GetAudioClip();
+		auto audioClipPath = audioClip->GetSoundPath();
+		int len = WideCharToMultiByte(CP_UTF8, 0, audioClipPath, -1, NULL, 0, NULL, NULL);
+		char* charStr = new char[len];
+		WideCharToMultiByte(CP_UTF8, 0, audioClipPath, -1, charStr, len, NULL, NULL);
+		ImGui::Text("Now Path ");
+		ImGui::SameLine();
+		ImGui::Text(charStr);
+
+		bool muteActive = audioSource->IsMute();
+		ImGui::Text("Mute ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##muteActive", &muteActive);
+		audioSource->SetMute(muteActive);
+
+		bool playonawakeActive = audioSource->m_isPlayOnAwake;
+		ImGui::Text("Play On Awake ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##playonawakeActive", &playonawakeActive);
+
+		bool loopActive = audioSource->m_isLoop;
+		ImGui::Text("Loop ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##loopActive", &loopActive);
+
+		float volume = audioSource->GetVolume();
+		ImGui::Text("Volume ");
+		ImGui::SameLine();
+		ImGui::SliderFloat("##volume", &volume, 0.0f, 1.0f);
+		audioSource->SetVolume(volume);
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_Camera_Component()
+{
+	ImGui::CollapsingHeader("Camera");
+	{
+		// background color 
+		// projection view mode combobox
+		// fov SliderFloat
+		// viewport rect textbox 4
+		// clipping planes near textbox / far textbox
+		// etc
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_Light_Component()
+{
+	ImGui::CollapsingHeader("Light");
+	{
+		// light type combobox
+		// range textbox
+		// color 
+		// intensity
+		// IndirectMultiplier
+		// shadowtype combobox
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_MeshRenderer_Component()
+{
+	ImGui::CollapsingHeader("MeshRenderer");
+	{
+		auto meshComponent = m_SelectedObject->m_MeshRenderer;
+		ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
+		if (meshComponent->m_ModelPathList.size() > 0);
+		for (int i = 0; i < meshComponent->m_ModelPathList.size(); i++)
+		{
+			ImGui::Text("Multi Path : ", meshComponent->m_ModelPathList[i]);
+		}
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_BoxCollider_Component()
+{
+	ImGui::CollapsingHeader("BoxCollider");
+	{
+		// istrigger checkbox
+		// center textbox 3
+		// size textbox 3
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_CapsuleCollider_Component()
+{
+	ImGui::CollapsingHeader("CapsuleCollider");
+	{
+		// istrigger checkbox
+		// center textbox 3
+		// radius textbox
+		// height textbox
+		// direction combobox
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_SphereCollider_Component()
+{
+	ImGui::CollapsingHeader("SphereCollider");
+	{
+		// istrigger checkbox
+		// center textbox 3
+		// radius textbox
+	}
+	ImGui::Separator(); // 구분선 추가
+}
+
+void ImguiManager::Update_Rigidbody_Component()
+{
+	ImGui::CollapsingHeader("Rigidbody");
+	{
+		// mass
+		// drag
+		// angular drag
+		// usegravity
+		// iskinematic
+		// interpolate
+		// collisiondetection
+		// constraints (freeze pos, freeze rot)
+	}
+	ImGui::Separator(); // 구분선 추가
 }
