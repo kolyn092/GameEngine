@@ -1,20 +1,20 @@
 #include "pch.h"
-#include "AudioListener.h"
+#include "CEAudioListener.h"
 #include "Transform.h"
 #include "CDebug.h"
 
-ComponentEngine::AudioListener::AudioListener()
+ComponentEngine::CEAudioListener::CEAudioListener()
 	: Component("AudioListener"), m_Volume(1.0f), m_isPause(false), m_ActiveState(true)
 {
 
 }
 
-ComponentEngine::AudioListener::~AudioListener()
+ComponentEngine::CEAudioListener::~CEAudioListener()
 {
 
 }
 
-void ComponentEngine::AudioListener::Awake()
+void ComponentEngine::CEAudioListener::Awake()
 {
 	if (m_GameObject)
 	{
@@ -24,7 +24,7 @@ void ComponentEngine::AudioListener::Awake()
 	}
 }
 
-void ComponentEngine::AudioListener::Update(float dTime)
+void ComponentEngine::CEAudioListener::Update(float dTime)
 {
 	if (m_GameObject)
 	{
@@ -34,27 +34,27 @@ void ComponentEngine::AudioListener::Update(float dTime)
 	}
 }
 
-void ComponentEngine::AudioListener::DebugTextRender()
+void ComponentEngine::CEAudioListener::DebugTextRender()
 {
 
 }
 
-void ComponentEngine::AudioListener::OnQuit()
+void ComponentEngine::CEAudioListener::OnQuit()
 {
 
 }
 
-void ComponentEngine::AudioListener::OnDisable()
+void ComponentEngine::CEAudioListener::OnDisable()
 {
 
 }
 
-void ComponentEngine::AudioListener::OnDestroy()
+void ComponentEngine::CEAudioListener::OnDestroy()
 {
 
 }
 
-void ComponentEngine::AudioListener::SetActive(bool value)
+void ComponentEngine::CEAudioListener::SetActive(bool value)
 {
 	if (value == true && m_ActiveState != value)
 	{
@@ -63,7 +63,7 @@ void ComponentEngine::AudioListener::SetActive(bool value)
 	m_ActiveState = value;
 }
 
-void ComponentEngine::AudioListener::Bind(GameObject* obj)
+void ComponentEngine::CEAudioListener::Bind(GameObject* obj)
 {
 	if (obj)
 	{

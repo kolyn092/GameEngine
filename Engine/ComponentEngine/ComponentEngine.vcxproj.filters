@@ -149,7 +149,7 @@
     <ClInclude Include="..\EX\Component\inc\AudioClip.h">
       <Filter>소스 파일\2_Components\Audio\AudioClip</Filter>
     </ClInclude>
-    <ClInclude Include="..\EX\Component\inc\AudioListener.h">
+    <ClInclude Include="..\EX\Component\inc\CEAudioListener.h">
       <Filter>소스 파일\2_Components\Audio\AudioListener</Filter>
     </ClInclude>
     <ClInclude Include="..\EX\Component\inc\AudioSource.h">
@@ -268,7 +268,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일\99_PCH</Filter>
     </ClCompile>
-    <ClCompile Include="AudioListener.cpp">
+    <ClCompile Include="CEAudioListener.cpp">
       <Filter>소스 파일\2_Components\Audio\AudioListener</Filter>
     </ClCompile>
     <ClCompile Include="AudioSource.cpp">

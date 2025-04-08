@@ -38,7 +38,7 @@ void Player::Update(float dTime)
 
 void Player::UpdateCamera()
 {
-	ComponentEngine::CCamera* _mainCamera = ComponentEngine::SceneManager::Ins()->GetNowSceneCamera();
+	ComponentEngine::CECamera* _mainCamera = ComponentEngine::SceneManager::Ins()->GetNowSceneCamera();
 
 	Vector3 _pos = m_GameObject->m_Transform->m_Backward * 8.0f;
 	_pos += m_GameObject->m_Transform->m_Up * 7.0f;

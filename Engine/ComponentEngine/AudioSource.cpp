@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "AudioSource.h"
-#include "AudioListener.h"
+#include "CEAudioListener.h"
 #include "Transform.h"
 #include "CDebug.h"
 #include "Scene.h"
@@ -161,7 +161,7 @@ void ComponentEngine::AudioSource::Update()
 			Transform* _transfrom = m_GameObject->GetComponent<Transform>();
 			m_Emitter.SetPosition(_transfrom->GetPosition());
 
-			AudioListener* _listener = m_GameObject->GetScene()->GetAudioListener();
+			CEAudioListener* _listener = m_GameObject->GetScene()->GetAudioListener();
 			if (_listener)
 			{
 				m_AudioSource->Apply3D(*_listener, m_Emitter);

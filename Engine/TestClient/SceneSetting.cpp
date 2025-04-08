@@ -40,10 +40,10 @@ void SceneSetting::CreateScene()
 	// Light 오브젝트의 Transform 설정 (회전값)
 	_lightObj->GetComponent<ComponentEngine::Transform>()->SetRotate(Vector3(50, -30, 0));
 	// Light Component 추가 및 컬러 세팅
-	ComponentEngine::CLight* _light = new ComponentEngine::CLight();
+	ComponentEngine::CELight* _light = new ComponentEngine::CELight();
 	_light->SetColor(Color(1, 1, 1, 1));
 	_light->SetFogActive(false);
-	_lightObj->AddComponent<ComponentEngine::CLight*>(_light);
+	_lightObj->AddComponent<ComponentEngine::CELight*>(_light);
 	// Scene에 해당 오브젝트 등록
 	_scene->AddGameObject(_lightObj);
 	
@@ -115,9 +115,9 @@ void SceneSetting::CreateScene()
 	_cameraObj->GetComponent<ComponentEngine::Transform>()->SetPosition(Vector3(0, 9, -9));
 	_cameraObj->GetComponent<ComponentEngine::Transform>()->SetRotate(30, 0, 0);
 	// Camera 컴포넌트 추가 및 설정
-	ComponentEngine::CCamera* _camera = new ComponentEngine::CCamera();
-	_camera->SetCameraMode(ComponentEngine::CCamera::eMode::FOLLOW);
-	_cameraObj->AddComponent<ComponentEngine::CCamera*>(_camera);
+	ComponentEngine::CECamera* _camera = new ComponentEngine::CECamera();
+	_camera->SetCameraMode(ComponentEngine::CECamera::eMode::FOLLOW);
+	_cameraObj->AddComponent<ComponentEngine::CECamera*>(_camera);
 	// Scene에 해당 오브젝트 등록
 	_scene->AddGameObject(_cameraObj);
 	// Scene의 메인 카메라로 등록

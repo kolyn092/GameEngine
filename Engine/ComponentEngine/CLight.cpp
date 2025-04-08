@@ -7,7 +7,7 @@
 
 using namespace DirectX::SimpleMath;
 
-ComponentEngine::CLight::CLight()
+ComponentEngine::CELight::CELight()
 	: Component("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(eLightType::DIRECTIONAL), m_Range(10),
 	m_Color(Color(1, 1, 1, 1)), m_Intensity(0.5f), m_IndirectMultiplier(0.2f),
 	m_ShadowType(eShadowType::NONE), m_ActiveState(true)
@@ -15,7 +15,7 @@ ComponentEngine::CLight::CLight()
 
 }
 
-ComponentEngine::CLight::CLight(eLightType lightType)
+ComponentEngine::CELight::CELight(eLightType lightType)
 	: Component("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(lightType), m_Range(10),
 	m_Color(Color(1, 1, 1, 1)), m_Intensity(1), m_IndirectMultiplier(1),
 	m_ShadowType(eShadowType::NONE), m_ActiveState(true)
@@ -23,7 +23,7 @@ ComponentEngine::CLight::CLight(eLightType lightType)
 
 }
 
-ComponentEngine::CLight::~CLight()
+ComponentEngine::CELight::~CELight()
 {
 	if (m_Light)
 	{
@@ -32,25 +32,25 @@ ComponentEngine::CLight::~CLight()
 	}
 }
 
-void ComponentEngine::CLight::SetFogActive(bool state)
+void ComponentEngine::CELight::SetFogActive(bool state)
 {
 	m_FogActive = state;
 	GRAPHICENGINE::SetFogOnOff(m_FogActive);
 }
 
-void ComponentEngine::CLight::SetFogColor(Color col)
+void ComponentEngine::CELight::SetFogColor(Color col)
 {
 	m_FogColor = col;
 	GRAPHICENGINE::SetFogColor(m_FogColor);
 }
 
-void ComponentEngine::CLight::SetFogDensity(float value)
+void ComponentEngine::CELight::SetFogDensity(float value)
 {
 	m_FogDensity = value;
 	GRAPHICENGINE::SetFogDensity(m_FogDensity);
 }
 
-void ComponentEngine::CLight::Awake()
+void ComponentEngine::CELight::Awake()
 {
 	/// TODO : 이 시점에서 하면 Transform 초기 설정이 안먹음.
 	///m_GameObject->GetComponent<Transform>()->SetRotate(Vector3(50, -30, 0));
@@ -74,20 +74,20 @@ void ComponentEngine::CLight::Awake()
 	GRAPHICENGINE::SetFogDensity(m_FogDensity);
 }
 
-void ComponentEngine::CLight::LateUpdate(float dTime)
+void ComponentEngine::CELight::LateUpdate(float dTime)
 {
 	/// 그림자 갱신
-	CCamera* _mainCam = m_GameObject->GetScene()->GetMainCamera();
+	CECamera* _mainCam = m_GameObject->GetScene()->GetMainCamera();
 	if (_mainCam)
 	{
-		CCamera::eMode _cameraMode = _mainCam->GetCameraMode();
+		CECamera::eMode _cameraMode = _mainCam->GetCameraMode();
 		Vector3 _pos = Vector3::Zero;
 		switch (_cameraMode)
 		{
-			case ComponentEngine::CCamera::eMode::DEFAULT:
+			case ComponentEngine::CECamera::eMode::DEFAULT:
 				_pos = _mainCam->m_GameObject->GetComponent<Transform>()->GetPosition();
 				break;
-			case ComponentEngine::CCamera::eMode::FOLLOW:
+			case ComponentEngine::CECamera::eMode::FOLLOW:
 				_pos = _mainCam->GetFollowTargetPos();
 				break;
 			default:
@@ -112,27 +112,27 @@ void ComponentEngine::CLight::LateUpdate(float dTime)
 
 }
 
-void ComponentEngine::CLight::DebugTextRender()
+void ComponentEngine::CELight::DebugTextRender()
 {
 	//CDebug::Ins()->DebugDrawText(L"%s %s", L"L", L"CLight");
 }
 
-void ComponentEngine::CLight::OnQuit()
+void ComponentEngine::CELight::OnQuit()
 {
 
 }
 
-void ComponentEngine::CLight::OnDisable()
+void ComponentEngine::CELight::OnDisable()
 {
 
 }
 
-void ComponentEngine::CLight::OnDestroy()
+void ComponentEngine::CELight::OnDestroy()
 {
 
 }
 
-void ComponentEngine::CLight::SetActive(bool value)
+void ComponentEngine::CELight::SetActive(bool value)
 {
 	if (value == true && m_ActiveState != value)
 	{
@@ -141,7 +141,7 @@ void ComponentEngine::CLight::SetActive(bool value)
 	m_ActiveState = value;
 }
 
-void ComponentEngine::CLight::Bind(GameObject* obj)
+void ComponentEngine::CELight::Bind(GameObject* obj)
 {
 
 }

@@ -91,7 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\EX\Component\inc\AudioClip.h" />
-    <ClInclude Include="..\EX\Component\inc\AudioListener.h" />
+    <ClInclude Include="..\EX\Component\inc\CEAudioListener.h" />
     <ClInclude Include="..\EX\Component\inc\AudioSource.h" />
     <ClInclude Include="..\EX\Component\inc\BoxCollider.h" />
     <ClInclude Include="..\EX\Component\inc\Button.h" />
@@ -134,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioClip.cpp" />
-    <ClCompile Include="AudioListener.cpp" />
+    <ClCompile Include="CEAudioListener.cpp" />
     <ClCompile Include="AudioSource.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Button.cpp" />
