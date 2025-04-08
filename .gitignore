@@ -437,12 +437,21 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,c++
 
 # library
-EX/
-3DGraphicsEngine/
-Shader/
+Engine/EX/DXTex/
+Engine/EX/DXTK/
+Engine/EX/Engine/
+Engine/EX/FBX/
+Engine/EX/FlatBuffer/
+Engine/EX/Font/
+Engine/EX/IMGUI/
+Engine/EX/MariaDB/
+Engine/EX/PhysX/physx/
+Engine/EX/PhysX/pxshared/
+Engine/3DGraphicsEngine/
+Engine/Shader/
 
 # resource
-Resource/
+Engine/Resource/
 
 # imgui
 imgui-master.zip
