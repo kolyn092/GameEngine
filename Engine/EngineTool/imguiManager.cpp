@@ -1,14 +1,18 @@
 #include "ImguiManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "CCamera.h"
-#include "MeshRenderer.h"
-#include "Transform.h"
-#include "AudioListener.h"
+#include "CEAudioListener.h"
 #include "AudioSource.h"
+#include "CCamera.h"
+#include "CLight.h"
+#include "MeshRenderer.h"
+#include "BoxCollider.h"
+#include "CapsuleCollider.h"
+#include "SphereCollider.h"
+#include "Rigidbody.h"
+#include "Transform.h"
 #include "CSkybox.h"
 #include "CTerrain.h"
-#include "CLight.h"
 #include "CFont.h"
 #include <imgui.h>
 
@@ -49,10 +53,10 @@ void ImguiManager::Initalize()
 	// Light 오브젝트의 Transform 설정 (회전값)
 	_lightObj->GetComponent<ComponentEngine::Transform>()->SetRotate(Vector3(50, -30, 0));
 	// Light Component 추가 및 컬러 세팅
-	ComponentEngine::CLight* _light = new ComponentEngine::CLight();
+	ComponentEngine::CELight* _light = new ComponentEngine::CELight();
 	_light->SetColor(Color(1, 1, 1, 1));
 	_light->SetFogActive(false);
-	_lightObj->AddComponent<ComponentEngine::CLight*>(_light);
+	_lightObj->AddComponent<ComponentEngine::CELight*>(_light);
 	// Scene에 해당 오브젝트 등록
 	m_DefaultScene->AddGameObject(_lightObj);
 
@@ -71,9 +75,9 @@ void ImguiManager::Initalize()
 	_cameraObj->GetComponent<ComponentEngine::Transform>()->SetPosition(Vector3(0, 9, -9));
 	_cameraObj->GetComponent<ComponentEngine::Transform>()->SetRotate(30, 0, 0);
 	// Camera 컴포넌트 추가 및 설정
-	ComponentEngine::CCamera* _camera = new ComponentEngine::CCamera();
-	_camera->SetCameraMode(ComponentEngine::CCamera::eMode::FOLLOW);
-	_cameraObj->AddComponent<ComponentEngine::CCamera*>(_camera);
+	ComponentEngine::CECamera* _camera = new ComponentEngine::CECamera();
+	_camera->SetCameraMode(ComponentEngine::CECamera::eMode::FOLLOW);
+	_cameraObj->AddComponent<ComponentEngine::CECamera*>(_camera);
 	// Scene에 해당 오브젝트 등록
 	m_DefaultScene->AddGameObject(_cameraObj);
 	// Scene의 메인 카메라로 등록
@@ -192,7 +196,7 @@ void ImguiManager::ShowObjectDetails()
 		ImGui::CollapsingHeader("Transform");
 		{
 			auto trans = m_SelectedObject->m_Transform;
-			float pos3f[3] = {trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z};
+			float pos3f[3] = { trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z };
 			float rot3f[3] = { trans->GetRotation().x, trans->GetRotation().y, trans->GetRotation().z };
 			float scl3f[3] = { trans->GetScale().x, trans->GetScale().y, trans->GetScale().z };
 			if (trans->GetParent() == nullptr)
@@ -214,7 +218,25 @@ void ImguiManager::ShowObjectDetails()
 
 		ImGui::Separator(); // 구분선 추가
 
-
+		// TODO : 같은 이름의 컴포넌트가 여러개가 있을 경우
+		if (m_SelectedObject->HasComponent<ComponentEngine::CEAudioListener>())
+			Update_AudioListener_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::AudioSource>())
+			Update_AudioSource_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::CECamera>())
+			Update_Camera_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::CELight>())
+			Update_Light_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::MeshRenderer>())
+			Update_MeshRenderer_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::BoxCollider>())
+			Update_BoxCollider_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::CapsuleCollider>())
+			Update_CapsuleCollider_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::SphereCollider>())
+			Update_SphereCollider_Component();
+		else if (m_SelectedObject->HasComponent<ComponentEngine::Rigidbody>())
+			Update_Rigidbody_Component();
 
 		if (ImGui::Button("Close"))  // 닫기 버튼 추가
 		{
@@ -227,7 +249,7 @@ void ImguiManager::ShowObjectDetails()
 
 void ImguiManager::Update_AudioListener_Component()
 {
-	auto audioListener = m_SelectedObject->GetComponent<ComponentEngine::AudioListener>();
+	auto audioListener = m_SelectedObject->GetComponent<ComponentEngine::CEAudioListener>();
 	bool componentActive = audioListener->isActive();
 	ImGui::Checkbox("##componentActive", &componentActive);
 	audioListener->SetActive(componentActive);
@@ -286,7 +308,8 @@ void ImguiManager::Update_AudioSource_Component()
 
 void ImguiManager::Update_Camera_Component()
 {
-	ImGui::CollapsingHeader("Camera");
+	auto camera = m_SelectedObject->GetComponent<ComponentEngine::CECamera>();
+	if (ImGui::CollapsingHeader("Camera"))
 	{
 		// background color 
 		// projection view mode combobox
@@ -294,6 +317,9 @@ void ImguiManager::Update_Camera_Component()
 		// viewport rect textbox 4
 		// clipping planes near textbox / far textbox
 		// etc
+		ImGui::Text("Background Color");
+		ImGui::ColorEdit4("##BackgroundColor", (float*)&(camera->m_BackGroundColor));
+
 	}
 	ImGui::Separator(); // 구분선 추가
 }
