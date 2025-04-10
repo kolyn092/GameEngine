@@ -259,7 +259,7 @@ void ImguiManager::Update_AudioListener_Component()
 	{
 
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_AudioSource_Component()
@@ -303,7 +303,7 @@ void ImguiManager::Update_AudioSource_Component()
 		ImGui::SliderFloat("##volume", &volume, 0.0f, 1.0f);
 		audioSource->SetVolume(volume);
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_Camera_Component()
@@ -332,21 +332,31 @@ void ImguiManager::Update_Camera_Component()
 		ImGui::Text("Far");
 		ImGui::SliderFloat("##Far", &camera->m_Far, camera->m_Near + 0.1f, 10000.0f);
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_Light_Component()
 {
-	ImGui::CollapsingHeader("Light");
+	auto light = m_SelectedObject->GetComponent<ComponentEngine::CELight>();
+	if(ImGui::CollapsingHeader("Light"))
 	{
-		// light type combobox
-		// range textbox
-		// color 
-		// intensity
-		// IndirectMultiplier
-		// shadowtype combobox
+		int lightType = static_cast<int>(light->m_LightType);
+		ImGui::Text("Light Type");
+		ImGui::Combo("##LightType", &lightType, "Spot\0Directional\0Point\0");
+		light->ConvertLightType(lightType);
+		ImGui::Text("Range");
+		ImGui::InputFloat("##Range", (float*)&(light->m_Range));
+		ImGui::Text("Color");
+		ImGui::ColorEdit4("##Color", (float*)&(light->m_Color));
+		ImGui::Text("Intensity");
+		ImGui::InputFloat("##Intensity", (float*)&(light->m_Intensity));
+		ImGui::Text("IndirectMultiplier");
+		ImGui::InputFloat("##IndirectMultiplier", (float*)&(light->m_IndirectMultiplier));
+		int shadowtype = static_cast<int>(light->m_ShadowType);
+		ImGui::Text("Shadow Type");
+		ImGui::Combo("##ShadowType", &shadowtype, "Soft\0Hard\0");
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_MeshRenderer_Component()

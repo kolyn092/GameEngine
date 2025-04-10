@@ -50,6 +50,11 @@ void ComponentEngine::CELight::SetFogDensity(float value)
 	GRAPHICENGINE::SetFogDensity(m_FogDensity);
 }
 
+void ComponentEngine::CELight::ConvertLightType(int lightType)
+{
+	m_LightType = static_cast<eLightType>(lightType);
+}
+
 void ComponentEngine::CELight::Awake()
 {
 	/// TODO : 이 시점에서 하면 Transform 초기 설정이 안먹음.

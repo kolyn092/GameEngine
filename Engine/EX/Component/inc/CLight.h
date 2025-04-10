@@ -20,6 +20,7 @@ namespace ComponentEngine
 	private:
 		GRAPHICENGINE::IDirectionLightInterface* m_Light;
 
+	public:
 		Color m_FogColor;				// 안개 컬러
 		float m_FogDensity;				// 안개 밀도 (0에 가까울수록 걷힌다. 1에 가까울수록 짙어진다)
 		bool m_FogActive;				// 안개 ON / OFF (default ON)
@@ -49,6 +50,8 @@ namespace ComponentEngine
 		void SetFogActive(bool state);
 		void SetFogColor(Color col);
 		void SetFogDensity(float value);
+
+		void ConvertLightType(int lightType);
 
 	public:
 		virtual void Awake() override;
