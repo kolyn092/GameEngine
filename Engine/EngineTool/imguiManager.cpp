@@ -371,42 +371,82 @@ void ImguiManager::Update_MeshRenderer_Component()
 			ImGui::Text("Multi Path : ", meshComponent->m_ModelPathList[i]);
 		}
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_BoxCollider_Component()
 {
+	auto collider = m_SelectedObject->GetComponent<ComponentEngine::BoxCollider>();
 	ImGui::CollapsingHeader("BoxCollider");
 	{
-		// istrigger checkbox
-		// center textbox 3
-		// size textbox 3
+		bool isTrigger = collider->IsTrigger();
+		ImGui::Text("IsTrigger ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		collider->SetTrigger(isTrigger);
+
+		ImGui::Text("Center ");
+		ImGui::SameLine();
+		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+
+		ImGui::Text("Size ");
+		ImGui::SameLine();
+		ImGui::InputFloat3("##Size", (float*)&(collider->m_Size));
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_CapsuleCollider_Component()
 {
+	auto collider = m_SelectedObject->GetComponent<ComponentEngine::CapsuleCollider>();
 	ImGui::CollapsingHeader("CapsuleCollider");
 	{
-		// istrigger checkbox
-		// center textbox 3
-		// radius textbox
-		// height textbox
-		// direction combobox
+		bool isTrigger = collider->IsTrigger();
+		ImGui::Text("IsTrigger ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		collider->SetTrigger(isTrigger);
+
+		ImGui::Text("Center ");
+		ImGui::SameLine();
+		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+
+		ImGui::Text("Radius ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##Radius", (float*)&(collider->m_Radius));
+
+		ImGui::Text("Height ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##Height", (float*)&(collider->m_HalfHeight));
+
+		int direction = static_cast<int>(collider->m_Direction);
+		ImGui::Text("Direction");
+		ImGui::Combo("##Direction", &direction, "XAxis\0YAxis\0ZAxis\0");
+		collider->m_Direction = static_cast<ComponentEngine::CapsuleCollider::eCapsuleDirection>(direction);
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_SphereCollider_Component()
 {
+	auto collider = m_SelectedObject->GetComponent<ComponentEngine::SphereCollider>();
 	ImGui::CollapsingHeader("SphereCollider");
 	{
-		// istrigger checkbox
-		// center textbox 3
-		// radius textbox
+		bool isTrigger = collider->IsTrigger();
+		ImGui::Text("IsTrigger ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		collider->SetTrigger(isTrigger);
+
+		ImGui::Text("Center ");
+		ImGui::SameLine();
+		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+
+		ImGui::Text("Radius ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##Radius", (float*)&(collider->m_Radius));
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }
 
 void ImguiManager::Update_Rigidbody_Component()
@@ -422,5 +462,5 @@ void ImguiManager::Update_Rigidbody_Component()
 		// collisiondetection
 		// constraints (freeze pos, freeze rot)
 	}
-	ImGui::Separator(); // 구분선 추가
+	ImGui::Separator();
 }

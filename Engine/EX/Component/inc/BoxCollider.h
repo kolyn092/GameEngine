@@ -6,7 +6,7 @@ namespace ComponentEngine
 	// 박스 콜라이더
 	class BoxCollider : public Collider
 	{
-	private:
+	public:
 		DirectX::SimpleMath::Vector3 m_Center;
 		DirectX::SimpleMath::Vector3 m_Size;
 

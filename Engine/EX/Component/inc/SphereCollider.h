@@ -7,7 +7,7 @@ namespace ComponentEngine
 	class SphereCollider : public Collider
 	{
 
-	private:
+	public:
 		DirectX::SimpleMath::Vector3 m_Center;
 		float m_Radius;
 

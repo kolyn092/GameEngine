@@ -14,7 +14,7 @@ namespace ComponentEngine
 			ZAxis,
 		};
 
-	private:
+	public:
 		DirectX::SimpleMath::Vector3 m_Center;
 		float m_Radius;
 		float m_HalfHeight;
