@@ -91,6 +91,11 @@ void ComponentEngine::CECamera::SetViewMode(eProjection viewMode)
 	m_ViewMode = viewMode;
 }
 
+void ComponentEngine::CECamera::ConvertViewMode(int viewMode)
+{
+	m_ViewMode = static_cast<eProjection>(viewMode);
+}
+
 void ComponentEngine::CECamera::FixedUpdate()
 {
 	// Input에서 월드상에 피킹된 좌표로 변환해주는걸 하기 위해서는 카메라 view, proj 세팅이 필요하다.

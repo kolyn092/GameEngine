@@ -16,8 +16,8 @@ namespace ComponentEngine
 
 		enum class eProjection
 		{
-			PERSPECTIVE,
-			ORTHOGRAPHIC,
+			PERSPECTIVE = 0,
+			ORTHOGRAPHIC = 1,
 		};
 
 		enum class eMode
@@ -64,7 +64,7 @@ namespace ComponentEngine
 		void SetCameraMode(eMode mode = eMode::DEFAULT, DirectX::SimpleMath::Vector3 pos = DirectX::SimpleMath::Vector3::Zero);
 		void SetClearFlags(eClearFlags flag = eClearFlags::SOLIDCOLOR);
 		void SetViewMode(eProjection viewMode);
-
+		void ConvertViewMode(int viewMode);
 
 	public:
 		eMode GetCameraMode() const { return m_Mode; }

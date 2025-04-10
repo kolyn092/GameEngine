@@ -311,15 +311,26 @@ void ImguiManager::Update_Camera_Component()
 	auto camera = m_SelectedObject->GetComponent<ComponentEngine::CECamera>();
 	if (ImGui::CollapsingHeader("Camera"))
 	{
-		// background color 
-		// projection view mode combobox
-		// fov SliderFloat
-		// viewport rect textbox 4
-		// clipping planes near textbox / far textbox
-		// etc
+		int viewmode = static_cast<int>(camera->m_ViewMode);
 		ImGui::Text("Background Color");
 		ImGui::ColorEdit4("##BackgroundColor", (float*)&(camera->m_BackGroundColor));
+		ImGui::Text("Projection");
+		ImGui::Combo("##Projection", &viewmode, "Perspective\0Orthographic\0");
+		camera->ConvertViewMode(viewmode);
 
+		if (viewmode == 0)
+		{
+			ImGui::Text("FOV");
+			ImGui::SliderFloat("##FOV", &camera->m_FOV, 1.0f, 179.0f);
+		}
+
+		float viewport[4] = { 0, 0, camera->m_ViewPortWidth, camera->m_ViewPortHeight };
+		ImGui::Text("Viewport Rect");
+		ImGui::InputFloat4("##ViewportRect", (float*)&viewport);
+		ImGui::Text("Near");
+		ImGui::SliderFloat("##Near", &camera->m_Near, 0.01f, camera->m_Far - 0.1f);
+		ImGui::Text("Far");
+		ImGui::SliderFloat("##Far", &camera->m_Far, camera->m_Near + 0.1f, 10000.0f);
 	}
 	ImGui::Separator(); // 구분선 추가
 }
