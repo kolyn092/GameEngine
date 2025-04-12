@@ -41,7 +41,7 @@ namespace ComponentEngine
 		PhysXEngine::PhysX* m_PhysXEngine;
 		physx::PxRigidDynamic* m_Actor;
 
-	private:
+	public:
 		float m_Mass;								// 질량
 		float m_Drag;								// 힘에 의해 움직일 때 공기 저항 영향 정도
 		float m_AngularDrag;						// 토크로 회전할 때 공기 저항 영향 정도
@@ -51,6 +51,7 @@ namespace ComponentEngine
 		eCollisionDetection m_CollisionDetection;
 		FreezeTransform m_FreezePosition;
 		FreezeTransform m_FreezeRotation;
+	private:
 		eForceMode m_ForceMode;
 
 	public:

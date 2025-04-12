@@ -451,16 +451,53 @@ void ImguiManager::Update_SphereCollider_Component()
 
 void ImguiManager::Update_Rigidbody_Component()
 {
+	auto rigidbody = m_SelectedObject->GetComponent<ComponentEngine::Rigidbody>();
 	ImGui::CollapsingHeader("Rigidbody");
 	{
-		// mass
-		// drag
-		// angular drag
-		// usegravity
-		// iskinematic
-		// interpolate
-		// collisiondetection
-		// constraints (freeze pos, freeze rot)
+		ImGui::Text("Mass ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##Mass", (float*)&(rigidbody->m_Mass));
+
+		ImGui::Text("Drag ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##Drag", (float*)&(rigidbody->m_Drag));
+
+		ImGui::Text("Angular Drag ");
+		ImGui::SameLine();
+		ImGui::InputFloat("##AngularDrag", (float*)&(rigidbody->m_AngularDrag));
+
+		ImGui::Text("UseGravity ");
+		ImGui::SameLine();
+		ImGui::Checkbox("##IsTrigger", &(rigidbody->m_UseGravity));
+
+		int interpolate = static_cast<int>(rigidbody->m_Interpolate);
+		ImGui::Text("Interpolate");
+		ImGui::Combo("##Interpolate", &interpolate, "Interpolate\0Extrapolate\0");
+		rigidbody->m_Interpolate = static_cast<ComponentEngine::Rigidbody::eInterpolate>(interpolate);
+		
+		int collisiondetection = static_cast<int>(rigidbody->m_CollisionDetection);
+		ImGui::Text("Collision Detection");
+		ImGui::Combo("##CollisionDetection", &interpolate, "Discrete\0Continuous\0Continuous_Dynamic\0Continuous_Speculative\0");
+		rigidbody->m_CollisionDetection = static_cast<ComponentEngine::Rigidbody::eCollisionDetection>(collisiondetection);
+
+		if (ImGui::CollapsingHeader("constraints"))
+		{
+			ImGui::Text("Freeze Position");
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezePosX", &(rigidbody->m_FreezePosition.x));
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezePosY", &(rigidbody->m_FreezePosition.y));
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezePosZ", &(rigidbody->m_FreezePosition.z));
+
+			ImGui::Text("Freeze Rotation");
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezeRotX", &(rigidbody->m_FreezeRotation.x));
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezeRotY", &(rigidbody->m_FreezeRotation.y));
+			ImGui::SameLine();
+			ImGui::Checkbox("##FreezeRotZ", &(rigidbody->m_FreezeRotation.z));
+		}
 	}
 	ImGui::Separator();
 }
