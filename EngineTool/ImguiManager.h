@@ -4,7 +4,7 @@
 class ImguiManager
 {
 private:
-	ComponentEngine::Scene* m_DefaultScene;
+	ComponentEngine::Scene* m_NowScene;
 	ComponentEngine::GameObject* m_SelectedObject;
 
 #pragma region SINGLETON

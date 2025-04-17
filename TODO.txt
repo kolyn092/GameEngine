@@ -1,0 +1,7 @@
+GameObject Add/Delete 기능 추가
+name 편집 버그 수정
+Component Add 기능 추가
+드래그드랍으로 자녀위치에 넣을때 상속되게 추가
+Script Component ui 추가
+파일 모음집 추가 + Scene 관리
+Scene 메타데이터 생성해서 세이브, 로드

@@ -19,17 +19,17 @@
 ImguiManager* ImguiManager::m_pInstance = nullptr;
 
 ImguiManager::ImguiManager()
-	: m_DefaultScene(nullptr), m_SelectedObject(nullptr)
+	: m_NowScene(nullptr), m_SelectedObject(nullptr)
 {
 
 }
 
 ImguiManager::~ImguiManager()
 {
-	if (m_DefaultScene)
+	if (m_NowScene)
 	{
-		delete m_DefaultScene;
-		m_DefaultScene = nullptr;
+		delete m_NowScene;
+		m_NowScene = nullptr;
 	}
 }
 
@@ -45,8 +45,8 @@ void ImguiManager::Initalize()
 	_defaultFont->CreateFont();
 
 	/// [ Create Default Scene ]
-	m_DefaultScene = new ComponentEngine::Scene();
-	m_DefaultScene->SetInputMouseLock(false);
+	m_NowScene = new ComponentEngine::Scene();
+	m_NowScene->SetInputMouseLock(false);
 
 	/// [ Default Light Setting ] 
 	ComponentEngine::GameObject* _lightObj = new ComponentEngine::GameObject("light");
@@ -58,7 +58,7 @@ void ImguiManager::Initalize()
 	_light->SetFogActive(false);
 	_lightObj->AddComponent<ComponentEngine::CELight*>(_light);
 	// Scene에 해당 오브젝트 등록
-	m_DefaultScene->AddGameObject(_lightObj);
+	m_NowScene->AddGameObject(_lightObj);
 
 	/// [ Default Skybox Object Setting ]
 	ComponentEngine::GameObject* _skyboxObj = new ComponentEngine::GameObject("skybox");
@@ -67,7 +67,7 @@ void ImguiManager::Initalize()
 	_skybox->m_FilePath = "..\\Resource\\Skybox\\SkyBox3_1.dds";
 	_skyboxObj->AddComponent<ComponentEngine::Skybox*>(_skybox);
 	// Scene에 해당 오브젝트 등록
-	m_DefaultScene->AddGameObject(_skyboxObj);
+	m_NowScene->AddGameObject(_skyboxObj);
 
 	/// [ Default Camera Object Setting ]
 	ComponentEngine::GameObject* _cameraObj = new ComponentEngine::GameObject("camera");
@@ -79,12 +79,12 @@ void ImguiManager::Initalize()
 	_camera->SetCameraMode(ComponentEngine::CECamera::eMode::FOLLOW);
 	_cameraObj->AddComponent<ComponentEngine::CECamera*>(_camera);
 	// Scene에 해당 오브젝트 등록
-	m_DefaultScene->AddGameObject(_cameraObj);
+	m_NowScene->AddGameObject(_cameraObj);
 	// Scene의 메인 카메라로 등록
-	m_DefaultScene->SetMainCamera(_camera);
+	m_NowScene->SetMainCamera(_camera);
 
 	/// [ Add Default Scene ]
-	ComponentEngine::SceneManager::Ins()->AddScene(m_DefaultScene);
+	ComponentEngine::SceneManager::Ins()->AddScene(m_NowScene);
 }
 
 void ImguiManager::Update()
@@ -94,7 +94,7 @@ void ImguiManager::Update()
 	/// //////////////////////////////////////////////////////////////////////////
 	/// 
 	ImGui::Begin("Hierarchy");
-	auto rootGameObjects = m_DefaultScene->GetRootObjects();
+	auto rootGameObjects = m_NowScene->GetRootObjects();
 	for (auto obj : rootGameObjects)
 	{
 		ShowGameObjectHierarchy(obj);
