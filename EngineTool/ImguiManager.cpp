@@ -92,8 +92,26 @@ void ImguiManager::Update()
 	/// //////////////////////////////////////////////////////////////////////////
 	/// ImGUI Setting
 	/// //////////////////////////////////////////////////////////////////////////
-	/// 
+
 	ImGui::Begin("Hierarchy");
+
+	// 우클릭 컨텍스트 메뉴 추가
+	if (ImGui::IsWindowHovered() &&
+		ImGui::IsMouseReleased(ImGuiMouseButton_Right) && !ImGui::IsAnyItemHovered())
+	{
+		ImGui::OpenPopup("HierarchyContext");
+	}
+
+	if (ImGui::BeginPopup("HierarchyContext"))
+	{
+		if (ImGui::MenuItem("Add GameObject"))
+		{
+			ComponentEngine::GameObject* _newObj = new ComponentEngine::GameObject();
+			m_NowScene->AddGameObject(_newObj);
+		}
+		ImGui::EndPopup();
+	}
+
 	auto rootGameObjects = m_NowScene->GetRootObjects();
 	for (auto obj : rootGameObjects)
 	{
@@ -168,6 +186,13 @@ void ImguiManager::ShowGameObjectHierarchy(ComponentEngine::GameObject* obj)
 			ShowGameObjectHierarchy(childObject);
 		}
 		ImGui::TreePop();
+	}
+
+	// GameObject Delete 기능
+	if (m_SelectedObject != nullptr && ImGui::IsKeyPressed(ImGuiKey::ImGuiKey_Delete))
+	{
+		m_NowScene->DeleteGameObject(m_SelectedObject);
+		m_SelectedObject = nullptr;
 	}
 }
 
