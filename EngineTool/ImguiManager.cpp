@@ -142,40 +142,6 @@ void ImguiManager::ShowGameObjectHierarchy(ComponentEngine::GameObject* obj)
 		m_SelectedObject = obj;
 	}
 
-	// 우클릭 컨텍스트 메뉴 추가
-	if (ImGui::BeginPopupContextItem())
-	{
-		if (ImGui::MenuItem("Rename"))
-		{
-			printf("Rename %s\n", obj->GetName().c_str());
-		}
-
-		if (ImGui::MenuItem("Delete"))
-		{
-			printf("Delete %s\n", obj->GetName().c_str());
-		}
-
-		ImGui::EndPopup();
-	}
-
-	// 드래그 드롭 추가
-	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
-	{
-		ImGui::SetDragDropPayload("DND_NODE", obj->GetName().c_str(), obj->GetName().size() + 1);
-		ImGui::Text("Dragging: %s", obj->GetName().c_str());
-		ImGui::EndDragDropSource();
-	}
-
-	if (ImGui::BeginDragDropTarget())
-	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_NODE"))
-		{
-			const char* droppedName = (const char*)payload->Data;
-			printf("Dropped %s onto %s\n", droppedName, obj->GetName().c_str());
-		}
-		ImGui::EndDragDropTarget();
-	}
-
 	// 자식 노드 표시
 	if (nodeOpen)
 	{
@@ -208,17 +174,23 @@ void ImguiManager::ShowObjectDetails()
 		ImGui::SameLine();
 
 		std::string strName = m_SelectedObject->GetName();
-		std::vector<char> nameBuffer(strName.begin(), strName.end());
-		nameBuffer.push_back('\0');
+		std::vector<char> nameBuffer(128);
+		std::copy(strName.begin(), strName.end(), nameBuffer.begin());
+		nameBuffer[strName.size()] = '\0';
 
 		if (ImGui::InputText("##name", nameBuffer.data(), nameBuffer.size()))
 		{
-			m_SelectedObject->SetName(std::string(nameBuffer.data()));
+			//m_SelectedObject->SetName(std::string(nameBuffer.data()));
+			std::string newName = nameBuffer.data();
+			if (!newName.empty() && newName != m_SelectedObject->GetName())
+			{
+				m_SelectedObject->SetName(newName);
+			}
 		}
 
 		ImGui::Separator(); // 구분선 추가
 
-		ImGui::CollapsingHeader("Transform");
+		if (ImGui::CollapsingHeader("Transform"))
 		{
 			auto trans = m_SelectedObject->m_Transform;
 			float pos3f[3] = { trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z };
@@ -363,7 +335,7 @@ void ImguiManager::Update_Camera_Component()
 void ImguiManager::Update_Light_Component()
 {
 	auto light = m_SelectedObject->GetComponent<ComponentEngine::CELight>();
-	if(ImGui::CollapsingHeader("Light"))
+	if (ImGui::CollapsingHeader("Light"))
 	{
 		int lightType = static_cast<int>(light->m_LightType);
 		ImGui::Text("Light Type");
@@ -499,7 +471,7 @@ void ImguiManager::Update_Rigidbody_Component()
 		ImGui::Text("Interpolate");
 		ImGui::Combo("##Interpolate", &interpolate, "Interpolate\0Extrapolate\0");
 		rigidbody->m_Interpolate = static_cast<ComponentEngine::Rigidbody::eInterpolate>(interpolate);
-		
+
 		int collisiondetection = static_cast<int>(rigidbody->m_CollisionDetection);
 		ImGui::Text("Collision Detection");
 		ImGui::Combo("##CollisionDetection", &interpolate, "Discrete\0Continuous\0Continuous_Dynamic\0Continuous_Speculative\0");
