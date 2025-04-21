@@ -14,6 +14,7 @@
 #include "CSkybox.h"
 #include "CTerrain.h"
 #include "CFont.h"
+#include "Script.h"
 #include <imgui.h>
 
 ImguiManager* ImguiManager::m_pInstance = nullptr;
@@ -162,11 +163,22 @@ void ImguiManager::ShowGameObjectHierarchy(ComponentEngine::GameObject* obj)
 	}
 }
 
+// Inspector 창
 void ImguiManager::ShowObjectDetails()
 {
 	if (m_SelectedObject != nullptr)  // 오브젝트가 선택된 경우에만 창을 띄움
 	{
 		ImGui::Begin("Inspector", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+
+		// 우클릭으로 전체 창에서 팝업 열기
+		if (ImGui::BeginPopupContextWindow("InspectorContext", ImGuiPopupFlags_MouseButtonRight))
+		{
+			if (ImGui::MenuItem("Delete"))
+			{
+				// 컴포넌트 index 지정해서 해당 index 컴포넌트를 삭제하도록 할까 싶긴한데 고민중
+			}
+			ImGui::EndPopup();
+		}
 
 		bool gameObjectActive = m_SelectedObject->isActive();
 		ImGui::Checkbox("##objectActive", &gameObjectActive);
@@ -190,58 +202,117 @@ void ImguiManager::ShowObjectDetails()
 
 		ImGui::Separator(); // 구분선 추가
 
-		if (ImGui::CollapsingHeader("Transform"))
+		auto& compList = m_SelectedObject->GetAllComponents();
+		for (int i = 0; i < m_SelectedObject->GetComponentSize(); i++)
 		{
-			auto trans = m_SelectedObject->m_Transform;
-			float pos3f[3] = { trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z };
-			float rot3f[3] = { trans->GetRotation().x, trans->GetRotation().y, trans->GetRotation().z };
-			float scl3f[3] = { trans->GetScale().x, trans->GetScale().y, trans->GetScale().z };
-			if (trans->GetParent() == nullptr)
-			{
-				ImGui::Text("Position");
-				ImGui::DragFloat3("##position", pos3f, 0.1f);
-
-				ImGui::Text("Rotation");
-				ImGui::DragFloat3("##rotation", rot3f, 0.1f);
-
-				ImGui::Text("Scale");
-				ImGui::DragFloat3("##scale", scl3f, 0.1f, 0.01f, 1000.0f);
-
-				trans->SetPosition(DirectX::SimpleMath::Vector3(pos3f[0], pos3f[1], pos3f[2]));
-				trans->SetRotate(DirectX::SimpleMath::Vector3(rot3f[0], rot3f[1], rot3f[2]));
-				trans->SetScale(DirectX::SimpleMath::Vector3(scl3f[0], scl3f[1], scl3f[2]));
-			}
+			// TODO : 같은 이름의 컴포넌트가 여러개가 있을 경우
+			if (compList[i]->GetComponentName() == "Transform")
+				Update_Transform_Component();
+			else if (compList[i]->GetComponentName() == "AudioListener")
+				Update_AudioListener_Component();
+			else if (compList[i]->GetComponentName() == "AudioSource")
+				Update_AudioSource_Component();
+			else if (compList[i]->GetComponentName() == "Camera")
+				Update_Camera_Component();
+			else if (compList[i]->GetComponentName() == "Light")
+				Update_Light_Component();
+			else if (compList[i]->GetComponentName() == "MeshRenderer")
+				Update_MeshRenderer_Component();
+			else if (compList[i]->GetComponentName() == "_BoxCollider")
+				Update_BoxCollider_Component();
+			else if (compList[i]->GetComponentName() == "CapsuleCollider")
+				Update_CapsuleCollider_Component();
+			else if (compList[i]->GetComponentName() == "SphereCollider")
+				Update_SphereCollider_Component();
+			else if (compList[i]->GetComponentName() == "Rigidbody")
+				Update_Rigidbody_Component();
 		}
 
-		ImGui::Separator(); // 구분선 추가
-
-		// TODO : 같은 이름의 컴포넌트가 여러개가 있을 경우
-		if (m_SelectedObject->HasComponent<ComponentEngine::CEAudioListener>())
-			Update_AudioListener_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::AudioSource>())
-			Update_AudioSource_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::CECamera>())
-			Update_Camera_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::CELight>())
-			Update_Light_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::MeshRenderer>())
-			Update_MeshRenderer_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::BoxCollider>())
-			Update_BoxCollider_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::CapsuleCollider>())
-			Update_CapsuleCollider_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::SphereCollider>())
-			Update_SphereCollider_Component();
-		else if (m_SelectedObject->HasComponent<ComponentEngine::Rigidbody>())
-			Update_Rigidbody_Component();
-
-		if (ImGui::Button("Close"))  // 닫기 버튼 추가
+		if (ImGui::Button("Add Component"))
 		{
-			m_SelectedObject = nullptr;  // 창 닫기
+			ImGui::OpenPopup("AddComponentPopup");
+		}
+
+		if (ImGui::BeginPopup("AddComponentPopup"))
+		{
+			if (ImGui::MenuItem("AudioListener"))
+			{
+				ComponentEngine::CEAudioListener* _comp = new ComponentEngine::CEAudioListener();
+				m_SelectedObject->AddComponent<ComponentEngine::CEAudioListener*>(_comp);
+			}
+			if (ImGui::MenuItem("AudioSource"))
+			{
+				ComponentEngine::AudioSource* _comp = new ComponentEngine::AudioSource();
+				m_SelectedObject->AddComponent<ComponentEngine::AudioSource*>(_comp);
+			}
+			if (ImGui::MenuItem("Camera"))
+			{
+				ComponentEngine::CECamera* _comp = new ComponentEngine::CECamera();
+				m_SelectedObject->AddComponent<ComponentEngine::CECamera*>(_comp);
+			}
+			if (ImGui::MenuItem("Light"))
+			{
+				ComponentEngine::CELight* _comp = new ComponentEngine::CELight();
+				m_SelectedObject->AddComponent<ComponentEngine::CELight*>(_comp);
+			}
+			if (ImGui::MenuItem("BoxCollider"))
+			{
+				ComponentEngine::BoxCollider* _comp = new ComponentEngine::BoxCollider();
+				m_SelectedObject->AddComponent<ComponentEngine::BoxCollider*>(_comp);
+			}
+			if (ImGui::MenuItem("CapsuleCollider"))
+			{
+				ComponentEngine::CapsuleCollider* _comp = new ComponentEngine::CapsuleCollider();
+				m_SelectedObject->AddComponent<ComponentEngine::CapsuleCollider*>(_comp);
+			}
+			if (ImGui::MenuItem("SphereCollider"))
+			{
+				ComponentEngine::SphereCollider* _comp = new ComponentEngine::SphereCollider();
+				m_SelectedObject->AddComponent<ComponentEngine::SphereCollider*>(_comp);
+			}
+			if (ImGui::MenuItem("Rigidbody"))
+			{
+				ComponentEngine::Rigidbody* _comp = new ComponentEngine::Rigidbody();
+				m_SelectedObject->AddComponent<ComponentEngine::Rigidbody*>(_comp);
+			}
+			if (ImGui::MenuItem("Script"))
+			{
+				ComponentEngine::Script* _comp = new ComponentEngine::Script();
+				m_SelectedObject->AddComponent<ComponentEngine::Script*>(_comp);
+			}
+			ImGui::EndPopup();
 		}
 
 		ImGui::End();
 	}
+}
+
+void ImguiManager::Update_Transform_Component()
+{
+	if (ImGui::CollapsingHeader("Transform"))
+	{
+		auto trans = m_SelectedObject->m_Transform;
+		float pos3f[3] = { trans->GetPosition().x, trans->GetPosition().y, trans->GetPosition().z };
+		float rot3f[3] = { trans->GetRotation().x, trans->GetRotation().y, trans->GetRotation().z };
+		float scl3f[3] = { trans->GetScale().x, trans->GetScale().y, trans->GetScale().z };
+		if (trans->GetParent() == nullptr)
+		{
+			ImGui::Text("Position");
+			ImGui::DragFloat3("##position", pos3f, 0.1f);
+
+			ImGui::Text("Rotation");
+			ImGui::DragFloat3("##rotation", rot3f, 0.1f);
+
+			ImGui::Text("Scale");
+			ImGui::DragFloat3("##scale", scl3f, 0.1f, 0.01f, 1000.0f);
+
+			trans->SetPosition(DirectX::SimpleMath::Vector3(pos3f[0], pos3f[1], pos3f[2]));
+			trans->SetRotate(DirectX::SimpleMath::Vector3(rot3f[0], rot3f[1], rot3f[2]));
+			trans->SetScale(DirectX::SimpleMath::Vector3(scl3f[0], scl3f[1], scl3f[2]));
+		}
+	}
+
+	ImGui::Separator(); // 구분선 추가
 }
 
 void ImguiManager::Update_AudioListener_Component()
@@ -251,11 +322,7 @@ void ImguiManager::Update_AudioListener_Component()
 	ImGui::Checkbox("##componentActive", &componentActive);
 	audioListener->SetActive(componentActive);
 	ImGui::SameLine();
-
 	ImGui::CollapsingHeader("AudioListener");
-	{
-
-	}
 	ImGui::Separator();
 }
 
@@ -267,7 +334,7 @@ void ImguiManager::Update_AudioSource_Component()
 	audioSource->SetActive(componentActive);
 	ImGui::SameLine();
 
-	ImGui::CollapsingHeader("AudioSource");
+	if(ImGui::CollapsingHeader("AudioSource"))
 	{
 		auto audioClip = audioSource->GetAudioClip();
 		auto audioClipPath = audioClip->GetSoundPath();
@@ -306,6 +373,11 @@ void ImguiManager::Update_AudioSource_Component()
 void ImguiManager::Update_Camera_Component()
 {
 	auto camera = m_SelectedObject->GetComponent<ComponentEngine::CECamera>();
+	bool componentActive = camera->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	camera->SetActive(componentActive);
+	ImGui::SameLine();
+
 	if (ImGui::CollapsingHeader("Camera"))
 	{
 		int viewmode = static_cast<int>(camera->m_ViewMode);
@@ -335,6 +407,11 @@ void ImguiManager::Update_Camera_Component()
 void ImguiManager::Update_Light_Component()
 {
 	auto light = m_SelectedObject->GetComponent<ComponentEngine::CELight>();
+	bool componentActive = light->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	light->SetActive(componentActive);
+	ImGui::SameLine();
+
 	if (ImGui::CollapsingHeader("Light"))
 	{
 		int lightType = static_cast<int>(light->m_LightType);
@@ -358,7 +435,7 @@ void ImguiManager::Update_Light_Component()
 
 void ImguiManager::Update_MeshRenderer_Component()
 {
-	ImGui::CollapsingHeader("MeshRenderer");
+	if(ImGui::CollapsingHeader("MeshRenderer"))
 	{
 		auto meshComponent = m_SelectedObject->m_MeshRenderer;
 		ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
@@ -374,7 +451,12 @@ void ImguiManager::Update_MeshRenderer_Component()
 void ImguiManager::Update_BoxCollider_Component()
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::BoxCollider>();
-	ImGui::CollapsingHeader("BoxCollider");
+	bool componentActive = collider->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	collider->SetActive(componentActive);
+	ImGui::SameLine();
+
+	if(ImGui::CollapsingHeader("BoxCollider"))
 	{
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
@@ -396,7 +478,12 @@ void ImguiManager::Update_BoxCollider_Component()
 void ImguiManager::Update_CapsuleCollider_Component()
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::CapsuleCollider>();
-	ImGui::CollapsingHeader("CapsuleCollider");
+	bool componentActive = collider->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	collider->SetActive(componentActive);
+	ImGui::SameLine();
+
+	if(ImGui::CollapsingHeader("CapsuleCollider"))
 	{
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
@@ -427,7 +514,12 @@ void ImguiManager::Update_CapsuleCollider_Component()
 void ImguiManager::Update_SphereCollider_Component()
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::SphereCollider>();
-	ImGui::CollapsingHeader("SphereCollider");
+	bool componentActive = collider->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	collider->SetActive(componentActive);
+	ImGui::SameLine();
+
+	if(ImGui::CollapsingHeader("SphereCollider"))
 	{
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
@@ -449,7 +541,12 @@ void ImguiManager::Update_SphereCollider_Component()
 void ImguiManager::Update_Rigidbody_Component()
 {
 	auto rigidbody = m_SelectedObject->GetComponent<ComponentEngine::Rigidbody>();
-	ImGui::CollapsingHeader("Rigidbody");
+	bool componentActive = rigidbody->isActive();
+	ImGui::Checkbox("##componentActive", &componentActive);
+	rigidbody->SetActive(componentActive);
+	ImGui::SameLine();
+
+	if(ImGui::CollapsingHeader("Rigidbody"))
 	{
 		ImGui::Text("Mass ");
 		ImGui::SameLine();

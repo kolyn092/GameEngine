@@ -34,6 +34,7 @@ public:
 private:
 	void ShowGameObjectHierarchy(ComponentEngine::GameObject* obj);
 	void ShowObjectDetails();
+	void Update_Transform_Component();
 	void Update_AudioListener_Component();
 	void Update_AudioSource_Component();
 	void Update_Camera_Component();

@@ -1,7 +1,8 @@
-GameObject Add/Delete 기능 추가
-name 편집 버그 수정
-Component Add 기능 추가
-드래그드랍으로 자녀위치에 넣을때 상속되게 추가
-Script Component ui 추가
-파일 모음집 추가 + Scene 관리
+(완) Component Add/Delete 기능
+component checkbox index 버그
+audiosource 컴포넌트 추가시 path 비어있어서 생기는 오류
+중복 컴포넌트 관련 버그 (Add/Delete)
+드래그드랍으로 자녀위치에 넣을때 상속 가능하게
+Script Component ui 
+파일 모음 뷰 + Scene 관리
 Scene 메타데이터 생성해서 세이브, 로드
