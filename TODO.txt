@@ -1,5 +1,5 @@
 (완) Component Add/Delete 기능
-component checkbox index 버그
+(완) component checkbox index 버그
 audiosource 컴포넌트 추가시 path 비어있어서 생기는 오류
 중복 컴포넌트 관련 버그 (Add/Delete)
 드래그드랍으로 자녀위치에 넣을때 상속 가능하게

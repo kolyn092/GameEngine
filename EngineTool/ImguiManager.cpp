@@ -207,25 +207,25 @@ void ImguiManager::ShowObjectDetails()
 		{
 			// TODO : 같은 이름의 컴포넌트가 여러개가 있을 경우
 			if (compList[i]->GetComponentName() == "Transform")
-				Update_Transform_Component();
+				Update_Transform_Component(i);
 			else if (compList[i]->GetComponentName() == "AudioListener")
-				Update_AudioListener_Component();
+				Update_AudioListener_Component(i);
 			else if (compList[i]->GetComponentName() == "AudioSource")
-				Update_AudioSource_Component();
+				Update_AudioSource_Component(i);
 			else if (compList[i]->GetComponentName() == "Camera")
-				Update_Camera_Component();
+				Update_Camera_Component(i);
 			else if (compList[i]->GetComponentName() == "Light")
-				Update_Light_Component();
+				Update_Light_Component(i);
 			else if (compList[i]->GetComponentName() == "MeshRenderer")
-				Update_MeshRenderer_Component();
-			else if (compList[i]->GetComponentName() == "_BoxCollider")
-				Update_BoxCollider_Component();
+				Update_MeshRenderer_Component(i);
+			else if (compList[i]->GetComponentName() == "BoxCollider")
+				Update_BoxCollider_Component(i);
 			else if (compList[i]->GetComponentName() == "CapsuleCollider")
-				Update_CapsuleCollider_Component();
+				Update_CapsuleCollider_Component(i);
 			else if (compList[i]->GetComponentName() == "SphereCollider")
-				Update_SphereCollider_Component();
+				Update_SphereCollider_Component(i);
 			else if (compList[i]->GetComponentName() == "Rigidbody")
-				Update_Rigidbody_Component();
+				Update_Rigidbody_Component(i);
 		}
 
 		if (ImGui::Button("Add Component"))
@@ -287,7 +287,7 @@ void ImguiManager::ShowObjectDetails()
 	}
 }
 
-void ImguiManager::Update_Transform_Component()
+void ImguiManager::Update_Transform_Component(int index)
 {
 	if (ImGui::CollapsingHeader("Transform"))
 	{
@@ -315,22 +315,24 @@ void ImguiManager::Update_Transform_Component()
 	ImGui::Separator(); // 구분선 추가
 }
 
-void ImguiManager::Update_AudioListener_Component()
+void ImguiManager::Update_AudioListener_Component(int index)
 {
 	auto audioListener = m_SelectedObject->GetComponent<ComponentEngine::CEAudioListener>();
 	bool componentActive = audioListener->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), & componentActive);
 	audioListener->SetActive(componentActive);
 	ImGui::SameLine();
 	ImGui::CollapsingHeader("AudioListener");
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_AudioSource_Component()
+void ImguiManager::Update_AudioSource_Component(int index)
 {
 	auto audioSource = m_SelectedObject->GetComponent<ComponentEngine::AudioSource>();
 	bool componentActive = audioSource->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	audioSource->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -370,11 +372,12 @@ void ImguiManager::Update_AudioSource_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_Camera_Component()
+void ImguiManager::Update_Camera_Component(int index)
 {
 	auto camera = m_SelectedObject->GetComponent<ComponentEngine::CECamera>();
 	bool componentActive = camera->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	camera->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -404,11 +407,12 @@ void ImguiManager::Update_Camera_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_Light_Component()
+void ImguiManager::Update_Light_Component(int index)
 {
 	auto light = m_SelectedObject->GetComponent<ComponentEngine::CELight>();
 	bool componentActive = light->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	light->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -433,11 +437,17 @@ void ImguiManager::Update_Light_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_MeshRenderer_Component()
+void ImguiManager::Update_MeshRenderer_Component(int index)
 {
+	auto meshComponent = m_SelectedObject->m_MeshRenderer;
+	bool componentActive = meshComponent->isActive();
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
+	meshComponent->SetActive(componentActive);
+	ImGui::SameLine();
+
 	if(ImGui::CollapsingHeader("MeshRenderer"))
 	{
-		auto meshComponent = m_SelectedObject->m_MeshRenderer;
 		ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
 		if (meshComponent->m_ModelPathList.size() > 0);
 		for (int i = 0; i < meshComponent->m_ModelPathList.size(); i++)
@@ -448,11 +458,12 @@ void ImguiManager::Update_MeshRenderer_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_BoxCollider_Component()
+void ImguiManager::Update_BoxCollider_Component(int index)
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::BoxCollider>();
 	bool componentActive = collider->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	collider->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -475,11 +486,12 @@ void ImguiManager::Update_BoxCollider_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_CapsuleCollider_Component()
+void ImguiManager::Update_CapsuleCollider_Component(int index)
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::CapsuleCollider>();
 	bool componentActive = collider->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	collider->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -511,11 +523,12 @@ void ImguiManager::Update_CapsuleCollider_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_SphereCollider_Component()
+void ImguiManager::Update_SphereCollider_Component(int index)
 {
 	auto collider = m_SelectedObject->GetComponent<ComponentEngine::SphereCollider>();
 	bool componentActive = collider->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	collider->SetActive(componentActive);
 	ImGui::SameLine();
 
@@ -538,11 +551,12 @@ void ImguiManager::Update_SphereCollider_Component()
 	ImGui::Separator();
 }
 
-void ImguiManager::Update_Rigidbody_Component()
+void ImguiManager::Update_Rigidbody_Component(int index)
 {
 	auto rigidbody = m_SelectedObject->GetComponent<ComponentEngine::Rigidbody>();
 	bool componentActive = rigidbody->isActive();
-	ImGui::Checkbox("##componentActive", &componentActive);
+	std::string label = "##componentActive" + std::to_string(index);
+	ImGui::Checkbox(label.c_str(), &componentActive);
 	rigidbody->SetActive(componentActive);
 	ImGui::SameLine();
 

@@ -34,15 +34,15 @@ public:
 private:
 	void ShowGameObjectHierarchy(ComponentEngine::GameObject* obj);
 	void ShowObjectDetails();
-	void Update_Transform_Component();
-	void Update_AudioListener_Component();
-	void Update_AudioSource_Component();
-	void Update_Camera_Component();
-	void Update_Light_Component();
-	void Update_MeshRenderer_Component();
-	void Update_BoxCollider_Component();
-	void Update_CapsuleCollider_Component();
-	void Update_SphereCollider_Component();
-	void Update_Rigidbody_Component();
+	void Update_Transform_Component(int index);
+	void Update_AudioListener_Component(int index);
+	void Update_AudioSource_Component(int index);
+	void Update_Camera_Component(int index);
+	void Update_Light_Component(int index);
+	void Update_MeshRenderer_Component(int index);
+	void Update_BoxCollider_Component(int index);
+	void Update_CapsuleCollider_Component(int index);
+	void Update_SphereCollider_Component(int index);
+	void Update_Rigidbody_Component(int index);
 };
 
