@@ -6,7 +6,7 @@ namespace ComponentEngine
 {
 	using namespace DirectX::SimpleMath;
 
-	class Transform : public Component
+	class Transform : public ComponentImpl<Transform>
 	{
 
 	private:

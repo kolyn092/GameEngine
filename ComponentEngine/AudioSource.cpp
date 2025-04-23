@@ -18,7 +18,7 @@ static float EmitterAngle[] =
 };
 
 ComponentEngine::AudioSource::AudioSource()
-	: Component("AudioSource"), m_AudioClip(nullptr), m_isMute(false), m_isPlayOnAwake(true), m_isLoop(true), m_Volume(1.0f),
+	: ComponentImpl("AudioSource"), m_AudioClip(nullptr), m_isMute(false), m_isPlayOnAwake(true), m_isLoop(true), m_Volume(1.0f),
 	m_AudioSource(nullptr), m_is3D(false), m_Spread(40.0f), m_MinDistance(1.0f), m_MaxDistance(500.0f),
 	m_ActiveState(true)
 {

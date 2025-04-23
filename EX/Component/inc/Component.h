@@ -3,6 +3,7 @@
 #include <string>
 #include "Object.h"
 #include "GameObject.h"
+#include "TypeIDGenerator.h"
 
 namespace ComponentEngine
 {
@@ -19,9 +20,11 @@ namespace ComponentEngine
 		Component();
 		Component(std::string componentName);
 		virtual ~Component();
+		virtual size_t GetTypeID() const = 0;
 
 	public:
 		std::string m_ComponentName;
+		int m_TypeLocalIndex = -1;	// 같은 타입의 컴포넌트끼리 구분하기 위한 인덱스
 
 	public:
 		template <typename T>
@@ -44,6 +47,25 @@ namespace ComponentEngine
 
 		std::string GetComponentName() const { return m_ComponentName; }
 
+	};
+
+	template<typename T>
+	class ComponentImpl : public Component
+	{
+	public:
+		ComponentImpl(std::string componentName);
+		virtual ~ComponentImpl();
+
+	public:
+		static size_t StaticTypeID()
+		{
+			return TypeIDGenerator::GetTypeID<T>();
+		}
+
+		size_t GetTypeID() const override
+		{
+			return StaticTypeID();
+		}
 	};
 
 	template <typename T>
@@ -88,5 +110,18 @@ namespace ComponentEngine
 		}
 
 		return false;
+	}
+
+	template<typename T>
+	ComponentImpl<T>::ComponentImpl(std::string componentName)
+		: Component()
+	{
+		m_ComponentName = componentName;
+	}
+
+	template<typename T>
+	ComponentImpl<T>::~ComponentImpl()
+	{
+
 	}
 }

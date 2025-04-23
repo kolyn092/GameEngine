@@ -8,7 +8,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::UI_Button::UI_Button()
-	: Component("UI_Button"), m_Interactable(true), m_NormalColor(Vector4::One), m_HightlightedColor(Vector4(0.8f, 0.8f, 0.8f, 1)),
+	: ComponentImpl("UI_Button"), m_Interactable(true), m_NormalColor(Vector4::One), m_HightlightedColor(Vector4(0.8f, 0.8f, 0.8f, 1)),
 	m_PressedColor(Vector4(0.6f, 0.6f, 0.6f, 1)), m_SelectedColor(Vector4(0.8f, 0.8f, 0.8f, 1)),
 	m_DisabledColor(Vector4(0.6f, 0.6f, 0.6f, 0.5f)), m_PrevButtonState(eButtonState::Default),
 	m_NowButtonState(eButtonState::Default), m_ActiveState(true)

@@ -3,7 +3,7 @@
 
 namespace ComponentEngine
 {
-	class UI_Button : public Component
+	class UI_Button : public ComponentImpl<UI_Button>
 	{
 	public:
 		enum class eButtonState

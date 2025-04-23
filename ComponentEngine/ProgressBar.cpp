@@ -4,7 +4,7 @@
 #include "CDebug.h"
 
 ComponentEngine::ProgressBar::ProgressBar()
-	: Component("ProgressBar"), m_MaxValue(5.0f), m_UserValue(5.0f), m_NowValue(5.0f), m_DecreaseValue(1.0f),
+	: ComponentImpl("ProgressBar"), m_MaxValue(5.0f), m_UserValue(5.0f), m_NowValue(5.0f), m_DecreaseValue(1.0f),
 	m_ProgressState(eProgressState::Decrease), m_ProgressDirection(eProgressDirection::Horizontal),
 	m_isSlowProgress(false), m_ActiveState(true)
 {

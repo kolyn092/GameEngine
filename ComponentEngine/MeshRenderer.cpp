@@ -5,7 +5,7 @@
 #include "Scene.h"
 
 ComponentEngine::MeshRenderer::MeshRenderer()
-	: Component("MeshRenderer"), m_isAnimLoop(true), m_ActiveState(true), m_ModelPath(""), m_Model(nullptr)
+	: ComponentImpl("MeshRenderer"), m_isAnimLoop(true), m_ActiveState(true), m_ModelPath(""), m_Model(nullptr)
 {
 	m_ModelPathList.reserve(10);
 	m_MaterialManager = new MaterialManager();

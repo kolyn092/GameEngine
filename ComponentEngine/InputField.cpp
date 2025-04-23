@@ -8,7 +8,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::InputField::InputField()
-	: Component("InputField"), m_ContentType(eContentType::Standard), m_AlignmentType(eAlignmentType::Left), m_Text(""), m_TextYCheck(""), m_TextSize(10.0f), m_TextPos(Vector2(0.f, 0.f)),
+	: ComponentImpl("InputField"), m_ContentType(eContentType::Standard), m_AlignmentType(eAlignmentType::Left), m_Text(""), m_TextYCheck(""), m_TextSize(10.0f), m_TextPos(Vector2(0.f, 0.f)),
 	m_TextColor(Vector4(1, 1, 1, 1)), m_CharacterLimit(0), m_CanInputText(false), m_ActiveState(true)
 {
 	m_TextSize = 20.0f;

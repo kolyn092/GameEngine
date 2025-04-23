@@ -9,7 +9,7 @@ namespace ComponentEngine
 	// AudioClip 를 재생하려는 오브젝트에 넣을 컴포넌트
 	// 
 	//////////////////////////////////////////////////////////////////////////
-	class AudioSource : public Component
+	class AudioSource : public ComponentImpl<AudioSource>
 	{
 
 	private:

@@ -8,7 +8,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::CECamera::CECamera()
-	: Component("Camera"), m_ViewPortWidth(1920), m_ViewPortHeight(1080), m_FOV(0),
+	: ComponentImpl("Camera"), m_ViewPortWidth(1920), m_ViewPortHeight(1080), m_FOV(0),
 	m_AspectRatio(0), m_Near(1.0f), m_Far(1000.0f), m_BackGroundColor(Color(1, 1, 1, 1)),
 	m_TargetObj(nullptr), m_View(Matrix::Identity), m_Proj(Matrix::Identity),
 	m_Mode(eMode::DEFAULT), m_ClearFlags(eClearFlags::SOLIDCOLOR), m_ViewMode(eProjection::PERSPECTIVE),

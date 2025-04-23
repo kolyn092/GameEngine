@@ -6,7 +6,7 @@
 
 namespace ComponentEngine
 {
-	class UI_Image : public Component
+	class UI_Image : public ComponentImpl<UI_Image>
 	{ 
 
 	public:

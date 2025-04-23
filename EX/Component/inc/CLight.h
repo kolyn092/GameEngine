@@ -3,7 +3,7 @@
 
 namespace ComponentEngine
 {
-	class CELight : public Component
+	class CELight : public ComponentImpl<CELight>
 	{
 
 	private:

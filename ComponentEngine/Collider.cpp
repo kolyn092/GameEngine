@@ -5,14 +5,14 @@
 #include "CDebug.h"
 
 ComponentEngine::Collider::Collider(std::string componentName)
-	: Component(componentName), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Shape(nullptr),
+	: ComponentImpl(componentName), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Shape(nullptr),
 	m_ActiveState(true), m_IsTrigger(false), m_ContactOffset(0.1f), m_Material(nullptr)
 {
 	m_Material = new PhysicMaterial();
 }
 
 ComponentEngine::Collider::Collider(std::string componentName, PhysicMaterial* material)
-	: Component(componentName), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Shape(nullptr),
+	: ComponentImpl(componentName), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Shape(nullptr),
 	m_ActiveState(true), m_IsTrigger(false), m_ContactOffset(0.1f), m_Material(material)
 {
 

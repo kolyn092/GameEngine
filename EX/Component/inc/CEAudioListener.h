@@ -4,7 +4,7 @@
 
 namespace ComponentEngine
 {
-	class CEAudioListener : public Component, public DirectX::AudioListener
+	class CEAudioListener : public ComponentImpl<CEAudioListener>, public DirectX::AudioListener
 	{
 
 	public:

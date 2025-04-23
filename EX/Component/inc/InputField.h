@@ -3,7 +3,7 @@
 
 namespace ComponentEngine
 {
-	class InputField : public Component
+	class InputField : public ComponentImpl<InputField>
 	{
 	public:
 		enum class eContentType

@@ -4,7 +4,7 @@
 
 namespace ComponentEngine
 {
-	class Skybox : public Component
+	class Skybox : public ComponentImpl<Skybox>
 	{
 
 	public:

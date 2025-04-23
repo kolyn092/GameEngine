@@ -8,7 +8,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::UI_Image::UI_Image()
-	: Component("UI_Image"), m_FillAmount(1.0f), m_UI(nullptr), m_ImagePath(""), m_Color(Vector4::One), m_Material(nullptr),
+	: ComponentImpl("UI_Image"), m_FillAmount(1.0f), m_UI(nullptr), m_ImagePath(""), m_Color(Vector4::One), m_Material(nullptr),
 	m_ImageType(eImageType::Simple), m_FillMethod(eFillMethod::Horizontal), m_FillOrigin(eFillOrigin::Left),
 	m_ActiveState(true)
 {

@@ -4,7 +4,7 @@
 namespace ComponentEngine
 {
 	class CFont;
-	class UI_Text : public Component
+	class UI_Text : public ComponentImpl<UI_Text>
 	{
 	public:
 		enum class eFontStyle

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <typeinfo>
 #include <string>
 #include <vector>
@@ -139,24 +138,11 @@ namespace ComponentEngine
 	template <typename T>
 	T GameObject::AddComponent(T component)
 	{
-		//// component가 transform 일 때
-		//Transform t;
-		//if (typeid(component) == typeid(&t))
-		//{
-		//	// 내가 가지고 있던 component들 중에 transform이 있는지 검사
-		//	for (Component* co : m_Components)
-		//	{
-		//		if (typeid(*component) == typeid(*co))
-		//		{
-		//			// 이미 transform이 있으면 push_back 하지 않고 리턴
-		//			return nullptr;
-		//		}
-		//	}
-		//}
 		component->Bind(this);
 		Component* _component = dynamic_cast<Component*>(component);
+		//int _index = _component->GetTypeID();
+		//_component->m_TypeLocalIndex = _index;
 		_component->m_GameObject = this;
-
 		m_Components.emplace_back(_component);
 
 		return component;
@@ -167,9 +153,6 @@ namespace ComponentEngine
 	{
 		for (Component* co : m_Components)
 		{
-			//const type_info& _info = typeid(*co);
-			//const type_info& _infoT = typeid(T);
-
 			if (typeid(*co) == typeid(T))
 			{
 				return dynamic_cast<T*>(co);

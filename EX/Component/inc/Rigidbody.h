@@ -3,7 +3,7 @@
 
 namespace ComponentEngine
 {
-	class Rigidbody : public Component
+	class Rigidbody : public ComponentImpl<Rigidbody>
 	{
 
 	public:

@@ -2,7 +2,7 @@
 #include "CSkybox.h"
 
 ComponentEngine::Skybox::Skybox()
-	: Component("Skybox"), m_FilePath("")
+	: ComponentImpl("Skybox"), m_FilePath("")
 {
 
 }

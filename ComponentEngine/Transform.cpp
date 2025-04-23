@@ -7,7 +7,7 @@
 #include "CDebug.h"
 
 ComponentEngine::Transform::Transform()
-	: Component("Transform"), m_Root(nullptr), m_Parent(nullptr),
+	: ComponentImpl("Transform"), m_Root(nullptr), m_Parent(nullptr),
 	m_Forward(Vector3(0, 0, 1)), m_Backward(Vector3(0, 0, -1)), m_Up(Vector3(0, 1, 0)), m_Left(Vector3(-1, 0, 0)), m_Right(Vector3(1, 0, 0)),
 	m_Position(Vector3::Zero), m_Rotation(Quaternion::Identity), m_Scale(Vector3::One),
 	m_LocalPosition(Vector3::Zero), m_LocalRotation(Quaternion::Identity), m_LocalScale(Vector3::One),

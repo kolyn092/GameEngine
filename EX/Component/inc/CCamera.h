@@ -4,7 +4,7 @@
 
 namespace ComponentEngine
 {
-	class CECamera : public Component
+	class CECamera : public ComponentImpl<CECamera>
 	{
 
 	public:

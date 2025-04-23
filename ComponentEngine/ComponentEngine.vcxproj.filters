@@ -251,6 +251,9 @@
     <ClInclude Include="..\EX\Component\inc\Script.h">
       <Filter>소스 파일\2_Components\Script</Filter>
     </ClInclude>
+    <ClInclude Include="..\EX\Component\inc\TypeIDGenerator.h">
+      <Filter>소스 파일\98_ETC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">

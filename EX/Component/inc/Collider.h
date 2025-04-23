@@ -5,7 +5,7 @@
 
 namespace ComponentEngine
 {
-	class Collider : public Component
+	class Collider : public ComponentImpl<Collider>
 	{
 
 	protected:

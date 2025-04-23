@@ -129,6 +129,7 @@
     <ClInclude Include="..\EX\Component\inc\CTimer.h" />
     <ClInclude Include="..\EX\Component\inc\Transform.h" />
     <ClInclude Include="..\EX\Component\inc\CUtil.h" />
+    <ClInclude Include="..\EX\Component\inc\TypeIDGenerator.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

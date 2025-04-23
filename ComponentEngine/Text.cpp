@@ -7,7 +7,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::UI_Text::UI_Text()
-	: Component("UI_Text"), m_Text(""), m_Font(), m_Color(Vector4(1, 1, 1, 1)), m_TextPos(Vector2(0, 0)), m_ActiveState(true)
+	: ComponentImpl("UI_Text"), m_Text(""), m_Font(), m_Color(Vector4(1, 1, 1, 1)), m_TextPos(Vector2(0, 0)), m_ActiveState(true)
 {
 
 }

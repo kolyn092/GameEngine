@@ -338,6 +338,9 @@ void ImguiManager::Update_AudioSource_Component(int index)
 
 	if(ImGui::CollapsingHeader("AudioSource"))
 	{
+		std::string componentIndex = std::to_string(audioSource->GetTypeID());
+		std::string label;
+
 		auto audioClip = audioSource->GetAudioClip();
 		auto audioClipPath = audioClip->GetSoundPath();
 		int len = WideCharToMultiByte(CP_UTF8, 0, audioClipPath, -1, NULL, 0, NULL, NULL);
@@ -350,23 +353,27 @@ void ImguiManager::Update_AudioSource_Component(int index)
 		bool muteActive = audioSource->IsMute();
 		ImGui::Text("Mute ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##muteActive", &muteActive);
+		label = "##muteActive" + componentIndex + "_" + std::to_string(audioSource->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &muteActive);
 		audioSource->SetMute(muteActive);
 
 		bool playonawakeActive = audioSource->m_isPlayOnAwake;
 		ImGui::Text("Play On Awake ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##playonawakeActive", &playonawakeActive);
+		label = "##playonawakeActive" + componentIndex + "_" + std::to_string(audioSource->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &playonawakeActive);
 
 		bool loopActive = audioSource->m_isLoop;
 		ImGui::Text("Loop ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##loopActive", &loopActive);
+		label = "##loopActive" + componentIndex + "_" + std::to_string(audioSource->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &loopActive);
 
 		float volume = audioSource->GetVolume();
 		ImGui::Text("Volume ");
 		ImGui::SameLine();
-		ImGui::SliderFloat("##volume", &volume, 0.0f, 1.0f);
+		label = "##volume" + componentIndex + "_" + std::to_string(audioSource->m_TypeLocalIndex);
+		ImGui::SliderFloat(label.c_str(), &volume, 0.0f, 1.0f);
 		audioSource->SetVolume(volume);
 	}
 	ImGui::Separator();
@@ -383,11 +390,17 @@ void ImguiManager::Update_Camera_Component(int index)
 
 	if (ImGui::CollapsingHeader("Camera"))
 	{
+		std::string componentIndex = std::to_string(camera->GetTypeID());
+		std::string label;
+
 		int viewmode = static_cast<int>(camera->m_ViewMode);
 		ImGui::Text("Background Color");
-		ImGui::ColorEdit4("##BackgroundColor", (float*)&(camera->m_BackGroundColor));
+		label = "##BackgroundColor" + componentIndex + "_" + std::to_string(camera->m_TypeLocalIndex);
+		ImGui::ColorEdit4(label.c_str(), (float*)&(camera->m_BackGroundColor));
+
 		ImGui::Text("Projection");
-		ImGui::Combo("##Projection", &viewmode, "Perspective\0Orthographic\0");
+		label = "##Projection" + componentIndex + "_" + std::to_string(camera->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &viewmode, "Perspective\0Orthographic\0");
 		camera->ConvertViewMode(viewmode);
 
 		if (viewmode == 0)
@@ -398,11 +411,16 @@ void ImguiManager::Update_Camera_Component(int index)
 
 		float viewport[4] = { 0, 0, camera->m_ViewPortWidth, camera->m_ViewPortHeight };
 		ImGui::Text("Viewport Rect");
-		ImGui::InputFloat4("##ViewportRect", (float*)&viewport);
+		label = "##ViewportRect" + componentIndex + "_" + std::to_string(camera->m_TypeLocalIndex);
+		ImGui::InputFloat4(label.c_str(), (float*)&viewport);
+
 		ImGui::Text("Near");
-		ImGui::SliderFloat("##Near", &camera->m_Near, 0.01f, camera->m_Far - 0.1f);
+		label = "##Near" + componentIndex + "_" + std::to_string(camera->m_TypeLocalIndex);
+		ImGui::SliderFloat(label.c_str(), &camera->m_Near, 0.01f, camera->m_Far - 0.1f);
+
 		ImGui::Text("Far");
-		ImGui::SliderFloat("##Far", &camera->m_Far, camera->m_Near + 0.1f, 10000.0f);
+		label = "##Far" + componentIndex + "_" + std::to_string(camera->m_TypeLocalIndex);
+		ImGui::SliderFloat(label.c_str(), &camera->m_Far, camera->m_Near + 0.1f, 10000.0f);
 	}
 	ImGui::Separator();
 }
@@ -418,21 +436,35 @@ void ImguiManager::Update_Light_Component(int index)
 
 	if (ImGui::CollapsingHeader("Light"))
 	{
+		std::string componentIndex = std::to_string(light->GetTypeID());
+		std::string label;
+
 		int lightType = static_cast<int>(light->m_LightType);
 		ImGui::Text("Light Type");
-		ImGui::Combo("##LightType", &lightType, "Spot\0Directional\0Point\0");
+		label = "##LightType" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &lightType, "Spot\0Directional\0Point\0");
 		light->ConvertLightType(lightType);
+
 		ImGui::Text("Range");
-		ImGui::InputFloat("##Range", (float*)&(light->m_Range));
+		label = "##Range" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(light->m_Range));
+
 		ImGui::Text("Color");
-		ImGui::ColorEdit4("##Color", (float*)&(light->m_Color));
+		label = "##Color" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::ColorEdit4(label.c_str(), (float*)&(light->m_Color));
+
 		ImGui::Text("Intensity");
-		ImGui::InputFloat("##Intensity", (float*)&(light->m_Intensity));
+		label = "##Intensity" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(light->m_Intensity));
+
 		ImGui::Text("IndirectMultiplier");
-		ImGui::InputFloat("##IndirectMultiplier", (float*)&(light->m_IndirectMultiplier));
+		label = "##IndirectMultiplier" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(light->m_IndirectMultiplier));
+
 		int shadowtype = static_cast<int>(light->m_ShadowType);
 		ImGui::Text("Shadow Type");
-		ImGui::Combo("##ShadowType", &shadowtype, "Soft\0Hard\0");
+		label = "##ShadowType" + componentIndex + "_" + std::to_string(light->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &shadowtype, "Soft\0Hard\0");
 	}
 	ImGui::Separator();
 }
@@ -449,7 +481,6 @@ void ImguiManager::Update_MeshRenderer_Component(int index)
 	if(ImGui::CollapsingHeader("MeshRenderer"))
 	{
 		ImGui::Text("Single Path : ", meshComponent->m_ModelPath);
-		if (meshComponent->m_ModelPathList.size() > 0);
 		for (int i = 0; i < meshComponent->m_ModelPathList.size(); i++)
 		{
 			ImGui::Text("Multi Path : ", meshComponent->m_ModelPathList[i]);
@@ -469,19 +500,25 @@ void ImguiManager::Update_BoxCollider_Component(int index)
 
 	if(ImGui::CollapsingHeader("BoxCollider"))
 	{
+		std::string componentIndex = std::to_string(collider->GetTypeID());
+		std::string label;
+
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		label = "##IsTrigger" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &isTrigger);
 		collider->SetTrigger(isTrigger);
 
 		ImGui::Text("Center ");
 		ImGui::SameLine();
-		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+		label = "##Center" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat3(label.c_str(), (float*)&(collider->m_Center));
 
 		ImGui::Text("Size ");
 		ImGui::SameLine();
-		ImGui::InputFloat3("##Size", (float*)&(collider->m_Size));
+		label = "##Size" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat3(label.c_str(), (float*)&(collider->m_Size));
 	}
 	ImGui::Separator();
 }
@@ -497,27 +534,35 @@ void ImguiManager::Update_CapsuleCollider_Component(int index)
 
 	if(ImGui::CollapsingHeader("CapsuleCollider"))
 	{
+		std::string componentIndex = std::to_string(collider->GetTypeID());
+		std::string label;
+
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		label = "##IsTrigger" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &isTrigger);
 		collider->SetTrigger(isTrigger);
 
 		ImGui::Text("Center ");
 		ImGui::SameLine();
-		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+		label = "##Center" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat3(label.c_str(), (float*)&(collider->m_Center));
 
 		ImGui::Text("Radius ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##Radius", (float*)&(collider->m_Radius));
+		label = "##Radius" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(collider->m_Radius));
 
 		ImGui::Text("Height ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##Height", (float*)&(collider->m_HalfHeight));
+		label = "##Height" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(collider->m_HalfHeight));
 
 		int direction = static_cast<int>(collider->m_Direction);
 		ImGui::Text("Direction");
-		ImGui::Combo("##Direction", &direction, "XAxis\0YAxis\0ZAxis\0");
+		label = "##Direction" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &direction, "XAxis\0YAxis\0ZAxis\0");
 		collider->m_Direction = static_cast<ComponentEngine::CapsuleCollider::eCapsuleDirection>(direction);
 	}
 	ImGui::Separator();
@@ -534,19 +579,25 @@ void ImguiManager::Update_SphereCollider_Component(int index)
 
 	if(ImGui::CollapsingHeader("SphereCollider"))
 	{
+		std::string componentIndex = std::to_string(collider->GetTypeID());
+		std::string label;
+
 		bool isTrigger = collider->IsTrigger();
 		ImGui::Text("IsTrigger ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##IsTrigger", &isTrigger);
+		label = "##IsTrigger" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &isTrigger);
 		collider->SetTrigger(isTrigger);
 
 		ImGui::Text("Center ");
 		ImGui::SameLine();
-		ImGui::InputFloat3("##Center", (float*)&(collider->m_Center));
+		label = "##Center" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat3(label.c_str(), (float*)&(collider->m_Center));
 
 		ImGui::Text("Radius ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##Radius", (float*)&(collider->m_Radius));
+		label = "##Radius" + componentIndex + "_" + std::to_string(collider->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(collider->m_Radius));
 	}
 	ImGui::Separator();
 }
@@ -562,49 +613,64 @@ void ImguiManager::Update_Rigidbody_Component(int index)
 
 	if(ImGui::CollapsingHeader("Rigidbody"))
 	{
+		std::string componentIndex = std::to_string(rigidbody->GetTypeID());
+		std::string label;
+
 		ImGui::Text("Mass ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##Mass", (float*)&(rigidbody->m_Mass));
+		label = "##Radius" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(rigidbody->m_Mass));
 
 		ImGui::Text("Drag ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##Drag", (float*)&(rigidbody->m_Drag));
+		label = "##Drag" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(rigidbody->m_Drag));
 
 		ImGui::Text("Angular Drag ");
 		ImGui::SameLine();
-		ImGui::InputFloat("##AngularDrag", (float*)&(rigidbody->m_AngularDrag));
+		label = "##AngularDrag" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::InputFloat(label.c_str(), (float*)&(rigidbody->m_AngularDrag));
 
 		ImGui::Text("UseGravity ");
 		ImGui::SameLine();
-		ImGui::Checkbox("##IsTrigger", &(rigidbody->m_UseGravity));
+		label = "##UseGravity" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::Checkbox(label.c_str(), &(rigidbody->m_UseGravity));
 
 		int interpolate = static_cast<int>(rigidbody->m_Interpolate);
 		ImGui::Text("Interpolate");
-		ImGui::Combo("##Interpolate", &interpolate, "Interpolate\0Extrapolate\0");
+		label = "##Interpolate" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &interpolate, "Interpolate\0Extrapolate\0");
 		rigidbody->m_Interpolate = static_cast<ComponentEngine::Rigidbody::eInterpolate>(interpolate);
 
 		int collisiondetection = static_cast<int>(rigidbody->m_CollisionDetection);
 		ImGui::Text("Collision Detection");
-		ImGui::Combo("##CollisionDetection", &interpolate, "Discrete\0Continuous\0Continuous_Dynamic\0Continuous_Speculative\0");
+		label = "##CollisionDetection" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+		ImGui::Combo(label.c_str(), &interpolate, "Discrete\0Continuous\0Continuous_Dynamic\0Continuous_Speculative\0");
 		rigidbody->m_CollisionDetection = static_cast<ComponentEngine::Rigidbody::eCollisionDetection>(collisiondetection);
 
 		if (ImGui::CollapsingHeader("constraints"))
 		{
 			ImGui::Text("Freeze Position");
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezePosX", &(rigidbody->m_FreezePosition.x));
+			label = "##FreezePosX" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezePosition.x));
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezePosY", &(rigidbody->m_FreezePosition.y));
+			label = "##FreezePosY" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezePosition.y));
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezePosZ", &(rigidbody->m_FreezePosition.z));
+			label = "##FreezePosZ" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezePosition.z));
 
 			ImGui::Text("Freeze Rotation");
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezeRotX", &(rigidbody->m_FreezeRotation.x));
+			label = "##FreezeRotX" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezeRotation.x));
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezeRotY", &(rigidbody->m_FreezeRotation.y));
+			label = "##FreezeRotY" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezeRotation.y));
 			ImGui::SameLine();
-			ImGui::Checkbox("##FreezeRotZ", &(rigidbody->m_FreezeRotation.z));
+			label = "##FreezeRotZ" + componentIndex + "_" + std::to_string(rigidbody->m_TypeLocalIndex);
+			ImGui::Checkbox(label.c_str(), &(rigidbody->m_FreezeRotation.z));
 		}
 	}
 	ImGui::Separator();

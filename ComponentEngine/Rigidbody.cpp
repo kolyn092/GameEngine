@@ -5,7 +5,7 @@
 #include "CDebug.h"
 
 ComponentEngine::Rigidbody::Rigidbody()
-	: Component("Rigidbody"), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Actor(nullptr),
+	: ComponentImpl("Rigidbody"), m_PhysXEngine(PhysXEngine::PhysX::Ins()), m_Actor(nullptr),
 	m_Mass(1.0f), m_Drag(0.0f), m_AngularDrag(0.05f), m_UseGravity(true),
 	m_IsKinematic(false), m_Interpolate(eInterpolate::NONE), m_CollisionDetection(eCollisionDetection::DISCRETE),
 	m_FreezePosition(FreezeTransform{ false, false, false }),

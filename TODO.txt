@@ -2,6 +2,8 @@
 (완) component checkbox index 버그
 audiosource 컴포넌트 추가시 path 비어있어서 생기는 오류
 중복 컴포넌트 관련 버그 (Add/Delete)
+ -> 동일 컴포넌트 인덱싱 관련 수정
+ -> GetComponent 로직 수정
 드래그드랍으로 자녀위치에 넣을때 상속 가능하게
 Script Component ui 
 파일 모음 뷰 + Scene 관리

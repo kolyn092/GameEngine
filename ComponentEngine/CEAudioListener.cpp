@@ -4,7 +4,7 @@
 #include "CDebug.h"
 
 ComponentEngine::CEAudioListener::CEAudioListener()
-	: Component("AudioListener"), m_Volume(1.0f), m_isPause(false), m_ActiveState(true)
+	: ComponentImpl("AudioListener"), m_Volume(1.0f), m_isPause(false), m_ActiveState(true)
 {
 
 }

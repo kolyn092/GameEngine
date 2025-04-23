@@ -23,4 +23,3 @@ void ComponentEngine::Component::Bind(GameObject* obj)
 {
 
 }
-

@@ -3,7 +3,7 @@
 
 namespace ComponentEngine
 {
-	class ProgressBar : public Component
+	class ProgressBar : public ComponentImpl<ProgressBar>
 	{
 	public:
 		enum class eProgressState

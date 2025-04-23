@@ -4,7 +4,7 @@
 
 namespace ComponentEngine
 {
-	class CTerrain : public Component
+	class CTerrain : public ComponentImpl<CTerrain>
 	{
 
 	public:

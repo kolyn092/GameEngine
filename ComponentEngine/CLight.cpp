@@ -8,7 +8,7 @@
 using namespace DirectX::SimpleMath;
 
 ComponentEngine::CELight::CELight()
-	: Component("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(eLightType::DIRECTIONAL), m_Range(10),
+	: ComponentImpl("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(eLightType::DIRECTIONAL), m_Range(10),
 	m_Color(Color(1, 1, 1, 1)), m_Intensity(0.5f), m_IndirectMultiplier(0.2f),
 	m_ShadowType(eShadowType::NONE), m_ActiveState(true)
 {
@@ -16,7 +16,7 @@ ComponentEngine::CELight::CELight()
 }
 
 ComponentEngine::CELight::CELight(eLightType lightType)
-	: Component("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(lightType), m_Range(10),
+	: ComponentImpl("Light"), m_Light(nullptr), m_FogColor(Color(1, 1, 1, 1)), m_FogDensity(0.03f), m_FogActive(true), m_LightType(lightType), m_Range(10),
 	m_Color(Color(1, 1, 1, 1)), m_Intensity(1), m_IndirectMultiplier(1),
 	m_ShadowType(eShadowType::NONE), m_ActiveState(true)
 {

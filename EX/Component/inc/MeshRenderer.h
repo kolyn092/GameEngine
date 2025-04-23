@@ -6,7 +6,7 @@
 
 namespace ComponentEngine
 {
-	class MeshRenderer : public Component
+	class MeshRenderer : public ComponentImpl<MeshRenderer>
 	{
 
 	public:

@@ -2,7 +2,7 @@
 #include "CTerrain.h"
 
 ComponentEngine::CTerrain::CTerrain()
-	: Component("Terrain"), m_FilePath(""), m_Terrain(nullptr)
+	: ComponentImpl("Terrain"), m_FilePath(""), m_Terrain(nullptr)
 {
 
 }

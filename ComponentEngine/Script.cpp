@@ -2,7 +2,7 @@
 #include "Script.h"
 
 ComponentEngine::Script::Script()
-	: Component("Script")
+	: ComponentImpl("Script")
 {
 
 }
